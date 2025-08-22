@@ -20,18 +20,21 @@
                         'dark-alt': '#26272b'
                     },
                     fontFamily: {
-                        'display': ['Inter', 'sans-serif']
+                        'display': ['Poppins', 'Inter', 'sans-serif'],
+                        'body': ['Inter', 'Poppins', 'sans-serif']
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { 
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', 'Inter', sans-serif;
             background: linear-gradient(135deg, #b4300a 0%, #7a150b 50%, #25262a 100%);
             min-height: 100vh;
+            font-weight: 400;
+            letter-spacing: -0.01em;
         }
         
         .glass-card {
@@ -229,6 +232,25 @@
             animation: shine 3s ease-in-out infinite;
         }
         
+        /* Typography enhancements */
+        .font-display {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+        
+        .font-body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
         /* Mobile-specific optimizations */
         @media (max-width: 640px) {
             .option-card:hover {
@@ -386,14 +408,14 @@
                     <div class="absolute inset-2 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 mx-auto rounded-full bg-gradient-to-r from-accent via-primary to-dark opacity-15 blur-2xl animate-pulse" style="animation-delay: 1s;"></div>
                 </div>
                 
-                <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
+                <h1 class="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-4 sm:mb-6 leading-tight px-2 font-display tracking-tight">
                     Premium Health
-                    <span class="block bg-gradient-to-r from-orange-300 via-red-300 to-red-200 bg-clip-text text-transparent">
+                    <span class="block bg-gradient-to-r from-orange-300 via-red-300 to-red-200 bg-clip-text text-transparent font-black">
                         Assessment
                     </span>
                 </h1>
                 
-                <p class="text-lg sm:text-xl md:text-2xl text-white opacity-90 max-w-3xl mx-auto leading-relaxed font-light px-4">
+                <p class="text-lg sm:text-xl md:text-2xl text-white opacity-90 max-w-3xl mx-auto leading-relaxed font-medium px-4 font-body tracking-wide">
                     Get your personalized, science-backed fat-burning transformation guide
                 </p>
                 
@@ -441,7 +463,7 @@
                         1
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display tracking-tight">
                             What is your age range?
                         </h2>
                         <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -455,8 +477,8 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-accent rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                             <span class="text-xl sm:text-2xl">🌟</span>
                         </div>
-                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">18-29 years</div>
-                        <div class="text-gray-600 font-medium text-sm sm:text-base">Peak Metabolism</div>
+                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-display">18-29 years</div>
+                        <div class="text-gray-600 font-semibold text-sm sm:text-base font-body">Peak Metabolism</div>
                         <div class="text-xs sm:text-sm text-gray-500 mt-2">Highest natural fat-burning potential</div>
                     </div>
                     
@@ -507,7 +529,7 @@
                         2
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display tracking-tight">
                             How would you describe your current weight status?
                         </h2>
                         <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -580,7 +602,7 @@
                         3
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display tracking-tight">
                             What is your current activity level?
                         </h2>
                         <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -653,7 +675,7 @@
                         4
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display tracking-tight">
                             What is your primary goal?
                         </h2>
                         <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -734,7 +756,7 @@
                         <div class="absolute -bottom-1 -left-1 sm:-bottom-2 sm:-left-2 w-4 h-4 sm:w-6 sm:h-6 bg-pink-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
                     </div>
                     
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 mb-4 sm:mb-6 font-display tracking-tight">
                         🎉 Assessment Complete!
                     </h2>
                     
@@ -1028,5 +1050,5 @@
         // Add touch feedback for mobile
         document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9730363c250491a6',t:'MTc1NTg0MzA3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9730638cd053fadc',t:'MTc1NTg0NDkzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
