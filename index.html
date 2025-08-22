@@ -740,6 +740,108 @@
             </div>
         </div>
 
+        <!-- Human Verification Section -->
+        <div id="verificationSection" class="question-section hidden">
+            <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 mb-6 sm:mb-8">
+                <div class="text-center">
+                    <div class="relative inline-block mb-6 sm:mb-8">
+                        <div class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto">
+                            <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center animate-pulse">
+                            <span class="text-white font-bold text-xs sm:text-sm">🛡️</span>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-gray-800 mb-4 sm:mb-6 font-display tracking-tight">
+                        🔐 Human Verification Required
+                    </h2>
+                    
+                    <div class="max-w-2xl mx-auto mb-8 sm:mb-10">
+                        <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 px-2">
+                            To protect our premium content and ensure you're a real person, please complete this quick verification challenge.
+                        </p>
+                        
+                        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 bg-blue-50 border border-blue-200">
+                            <div class="flex items-center justify-center mb-3 sm:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-blue-800 font-semibold text-sm sm:text-base">Security Notice</span>
+                            </div>
+                            <p class="text-blue-700 text-xs sm:text-sm">
+                                This verification helps us prevent automated access and ensures our personalized health guides reach real people who need them.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Math Challenge -->
+                    <div class="max-w-md mx-auto mb-8 sm:mb-10">
+                        <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200">
+                            <div class="flex items-center justify-center mb-4 sm:mb-6">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3">
+                                    <span class="text-white font-bold text-sm sm:text-base">🧮</span>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-800">Math Challenge</h3>
+                            </div>
+                            
+                            <div class="text-center mb-4 sm:mb-6">
+                                <div class="text-2xl sm:text-3xl font-black text-gray-800 mb-2" id="mathQuestion">
+                                    Loading...
+                                </div>
+                                <p class="text-gray-600 text-sm">Solve this simple equation</p>
+                            </div>
+                            
+                            <div class="flex flex-col items-center space-y-4">
+                                <input type="number" 
+                                       id="mathAnswer" 
+                                       placeholder="Enter your answer"
+                                       class="w-full px-4 py-3 text-center text-lg font-bold border-2 border-gray-300 rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-20 transition-all duration-300"
+                                       onkeypress="if(event.key==='Enter') verifyMath()">
+                                
+                                <button onclick="verifyMath()" 
+                                        id="verifyBtn"
+                                        class="w-full premium-button text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105">
+                                    Verify Answer
+                                </button>
+                            </div>
+                            
+                            <div id="mathFeedback" class="mt-4 text-center hidden">
+                                <!-- Feedback will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Alternative Verification Methods -->
+                    <div class="max-w-lg mx-auto">
+                        <div class="text-center mb-4">
+                            <p class="text-gray-600 text-sm">Having trouble? Try these alternatives:</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                            <button onclick="showImageChallenge()" 
+                                    class="flex items-center justify-center px-4 py-3 bg-white bg-opacity-80 rounded-xl hover:bg-opacity-100 transition-all duration-300 border border-gray-200 hover:border-primary group">
+                                <svg class="w-4 h-4 mr-2 text-gray-600 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-primary">Image Challenge</span>
+                            </button>
+                            
+                            <button onclick="showSliderChallenge()" 
+                                    class="flex items-center justify-center px-4 py-3 bg-white bg-opacity-80 rounded-xl hover:bg-opacity-100 transition-all duration-300 border border-gray-200 hover:border-primary group">
+                                <svg class="w-4 h-4 mr-2 text-gray-600 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-primary">Slider Challenge</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Final Section with Google Form -->
         <div id="finalSection" class="question-section hidden">
             <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 mb-6 sm:mb-8">
@@ -754,15 +856,18 @@
                             <span class="text-white font-bold text-xs sm:text-sm">✓</span>
                         </div>
                         <div class="absolute -bottom-1 -left-1 sm:-bottom-2 sm:-left-2 w-4 h-4 sm:w-6 sm:h-6 bg-pink-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+                        <div class="absolute top-0 left-0 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center animate-pulse" style="animation-delay: 1s;">
+                            <span class="text-white font-bold text-xs sm:text-sm">🛡️</span>
+                        </div>
                     </div>
                     
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 mb-4 sm:mb-6 font-display tracking-tight">
-                        🎉 Assessment Complete!
+                        🎉 Verification Complete!
                     </h2>
                     
                     <div class="max-w-3xl mx-auto mb-8 sm:mb-10">
                         <p class="text-lg sm:text-xl text-gray-700 leading-relaxed mb-4 sm:mb-6 px-2">
-                            Click below to download your <span class="font-bold text-accent">free personalized guide</span>. 
+                            Thank you for verifying! Click below to download your <span class="font-bold text-accent">free personalized guide</span>. 
                             Please also fill out our Google Form so we can stay in touch, track your progress, 
                             and support you in <span class="font-bold text-primary">losing fat as quickly as possible</span>.
                         </p>
@@ -779,6 +884,10 @@
                             <div class="flex items-center bg-white bg-opacity-50 rounded-full px-3 sm:px-4 py-2 w-full sm:w-auto">
                                 <div class="w-2 h-2 bg-gold rounded-full mr-2 animate-pulse" style="animation-delay: 0.6s;"></div>
                                 <span class="font-medium text-xs sm:text-sm">Expert Support</span>
+                            </div>
+                            <div class="flex items-center bg-white bg-opacity-50 rounded-full px-3 sm:px-4 py-2 w-full sm:w-auto">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" style="animation-delay: 0.9s;"></div>
+                                <span class="font-medium text-xs sm:text-sm">Verified Access</span>
                             </div>
                         </div>
                     </div>
@@ -888,7 +997,7 @@
                 }, 300);
                 
             } else if (currentQuestion === totalQuestions) {
-                // Show final section
+                // Show verification section
                 const currentQuestionEl = document.getElementById(`question${currentQuestion}`);
                 currentQuestionEl.style.opacity = '0';
                 currentQuestionEl.style.transform = 'translateY(-20px)';
@@ -898,20 +1007,21 @@
                     currentQuestionEl.style.opacity = '';
                     currentQuestionEl.style.transform = '';
                     
-                    const finalSection = document.getElementById('finalSection');
-                    finalSection.classList.remove('hidden');
-                    finalSection.classList.add('fade-in');
+                    const verificationSection = document.getElementById('verificationSection');
+                    verificationSection.classList.remove('hidden');
+                    verificationSection.classList.add('fade-in');
                     
                     currentQuestion++;
                     updateNavigation();
                     updateProgress();
+                    generateMathChallenge();
                 }, 300);
             }
         }
 
         function previousQuestion() {
             if (currentQuestion > 1) {
-                if (currentQuestion === totalQuestions + 1) {
+                if (currentQuestion === totalQuestions + 2) {
                     // Coming back from final section
                     const finalSection = document.getElementById('finalSection');
                     finalSection.style.opacity = '0';
@@ -921,6 +1031,25 @@
                         finalSection.classList.add('hidden');
                         finalSection.style.opacity = '';
                         finalSection.style.transform = '';
+                        
+                        const verificationSection = document.getElementById('verificationSection');
+                        verificationSection.classList.remove('hidden');
+                        verificationSection.classList.add('fade-in');
+                        
+                        currentQuestion = totalQuestions + 1;
+                        updateNavigation();
+                        updateProgress();
+                    }, 300);
+                } else if (currentQuestion === totalQuestions + 1) {
+                    // Coming back from verification section
+                    const verificationSection = document.getElementById('verificationSection');
+                    verificationSection.style.opacity = '0';
+                    verificationSection.style.transform = 'translateY(-20px)';
+                    
+                    setTimeout(() => {
+                        verificationSection.classList.add('hidden');
+                        verificationSection.style.opacity = '';
+                        verificationSection.style.transform = '';
                         
                         const questionEl = document.getElementById(`question${totalQuestions}`);
                         questionEl.classList.remove('hidden');
@@ -966,7 +1095,7 @@
             }
             
             // Update next button
-            if (currentQuestion === totalQuestions + 1) {
+            if (currentQuestion >= totalQuestions + 1) {
                 nextBtn.classList.add('hidden');
             } else {
                 nextBtn.classList.remove('hidden');
@@ -1049,6 +1178,390 @@
 
         // Add touch feedback for mobile
         document.addEventListener('touchstart', function() {}, {passive: true});
+
+        // Verification System Variables
+        let mathAnswer = 0;
+        let isVerified = false;
+        let verificationAttempts = 0;
+        const maxAttempts = 3;
+
+        // Generate Math Challenge
+        function generateMathChallenge() {
+            const operations = ['+', '-', '×'];
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+            let num1, num2, question;
+            
+            switch(operation) {
+                case '+':
+                    num1 = Math.floor(Math.random() * 20) + 5;
+                    num2 = Math.floor(Math.random() * 20) + 5;
+                    mathAnswer = num1 + num2;
+                    question = `${num1} + ${num2} = ?`;
+                    break;
+                case '-':
+                    num1 = Math.floor(Math.random() * 30) + 20;
+                    num2 = Math.floor(Math.random() * 15) + 5;
+                    mathAnswer = num1 - num2;
+                    question = `${num1} - ${num2} = ?`;
+                    break;
+                case '×':
+                    num1 = Math.floor(Math.random() * 8) + 2;
+                    num2 = Math.floor(Math.random() * 8) + 2;
+                    mathAnswer = num1 * num2;
+                    question = `${num1} × ${num2} = ?`;
+                    break;
+            }
+            
+            document.getElementById('mathQuestion').textContent = question;
+            document.getElementById('mathAnswer').value = '';
+            document.getElementById('mathFeedback').classList.add('hidden');
+        }
+
+        // Verify Math Answer
+        function verifyMath() {
+            const userAnswer = parseInt(document.getElementById('mathAnswer').value);
+            const feedback = document.getElementById('mathFeedback');
+            const verifyBtn = document.getElementById('verifyBtn');
+            
+            verificationAttempts++;
+            
+            if (userAnswer === mathAnswer) {
+                // Correct answer
+                feedback.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="font-bold">Verification Successful!</span>
+                        </div>
+                        <p class="text-sm">You've proven you're human. Redirecting to your results...</p>
+                    </div>
+                `;
+                feedback.classList.remove('hidden');
+                
+                verifyBtn.innerHTML = `
+                    <svg class="w-5 h-5 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Verified!
+                `;
+                verifyBtn.disabled = true;
+                verifyBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                
+                isVerified = true;
+                
+                // Proceed to final section after delay
+                setTimeout(() => {
+                    proceedToFinalSection();
+                }, 2000);
+                
+            } else {
+                // Wrong answer
+                const attemptsLeft = maxAttempts - verificationAttempts;
+                
+                if (attemptsLeft > 0) {
+                    feedback.innerHTML = `
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="font-bold">Incorrect Answer</span>
+                            </div>
+                            <p class="text-sm">Please try again. ${attemptsLeft} attempt${attemptsLeft > 1 ? 's' : ''} remaining.</p>
+                        </div>
+                    `;
+                    
+                    // Shake animation
+                    const mathInput = document.getElementById('mathAnswer');
+                    mathInput.style.animation = 'shake 0.5s ease-in-out';
+                    setTimeout(() => {
+                        mathInput.style.animation = '';
+                        mathInput.focus();
+                        mathInput.select();
+                    }, 500);
+                    
+                } else {
+                    // Max attempts reached, generate new challenge
+                    feedback.innerHTML = `
+                        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-xl">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                                <span class="font-bold">New Challenge Generated</span>
+                            </div>
+                            <p class="text-sm">Let's try a different equation.</p>
+                        </div>
+                    `;
+                    
+                    verificationAttempts = 0;
+                    setTimeout(() => {
+                        generateMathChallenge();
+                    }, 1500);
+                }
+                
+                feedback.classList.remove('hidden');
+            }
+        }
+
+        // Show Image Challenge (Alternative)
+        function showImageChallenge() {
+            const mathChallenge = document.querySelector('.max-w-md.mx-auto.mb-8');
+            mathChallenge.innerHTML = `
+                <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200">
+                    <div class="flex items-center justify-center mb-4 sm:mb-6">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white font-bold text-sm sm:text-base">🖼️</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800">Image Challenge</h3>
+                    </div>
+                    
+                    <div class="text-center mb-4 sm:mb-6">
+                        <p class="text-gray-600 text-sm mb-4">Click on all images that contain <strong>healthy food</strong></p>
+                        
+                        <div class="grid grid-cols-3 gap-2 mb-4">
+                            <div class="image-option aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, true)">
+                                <span class="text-2xl">🥗</span>
+                            </div>
+                            <div class="image-option aspect-square bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, false)">
+                                <span class="text-2xl">🍔</span>
+                            </div>
+                            <div class="image-option aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, true)">
+                                <span class="text-2xl">🍎</span>
+                            </div>
+                            <div class="image-option aspect-square bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, false)">
+                                <span class="text-2xl">🍕</span>
+                            </div>
+                            <div class="image-option aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, true)">
+                                <span class="text-2xl">🥕</span>
+                            </div>
+                            <div class="image-option aspect-square bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, false)">
+                                <span class="text-2xl">🍰</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="verifyImageSelection()" 
+                            id="verifyImageBtn"
+                            class="w-full premium-button text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 opacity-50 cursor-not-allowed" disabled>
+                        Verify Selection
+                    </button>
+                    
+                    <div id="imageFeedback" class="mt-4 text-center hidden"></div>
+                </div>
+            `;
+        }
+
+        // Show Slider Challenge (Alternative)
+        function showSliderChallenge() {
+            const sliderValue = Math.floor(Math.random() * 50) + 25;
+            const mathChallenge = document.querySelector('.max-w-md.mx-auto.mb-8');
+            mathChallenge.innerHTML = `
+                <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200">
+                    <div class="flex items-center justify-center mb-4 sm:mb-6">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white font-bold text-sm sm:text-base">🎚️</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800">Slider Challenge</h3>
+                    </div>
+                    
+                    <div class="text-center mb-4 sm:mb-6">
+                        <p class="text-gray-600 text-sm mb-4">Move the slider to <strong>${sliderValue}</strong></p>
+                        
+                        <div class="mb-4">
+                            <input type="range" 
+                                   id="verificationSlider" 
+                                   min="0" 
+                                   max="100" 
+                                   value="0"
+                                   data-target="${sliderValue}"
+                                   class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                                   oninput="updateSliderValue(this)">
+                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                <span>0</span>
+                                <span id="sliderDisplay" class="font-bold text-lg text-gray-800">0</span>
+                                <span>100</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="verifySlider()" 
+                            id="verifySliderBtn"
+                            class="w-full premium-button text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105">
+                        Verify Position
+                    </button>
+                    
+                    <div id="sliderFeedback" class="mt-4 text-center hidden"></div>
+                </div>
+            `;
+        }
+
+        // Image Selection Functions
+        let selectedImages = [];
+        let correctImages = [];
+
+        function selectImage(element, isCorrect) {
+            const index = Array.from(element.parentElement.children).indexOf(element);
+            
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected', 'ring-4', 'ring-blue-500');
+                selectedImages = selectedImages.filter(i => i !== index);
+            } else {
+                element.classList.add('selected', 'ring-4', 'ring-blue-500');
+                selectedImages.push(index);
+            }
+            
+            if (isCorrect && !correctImages.includes(index)) {
+                correctImages.push(index);
+            }
+            
+            // Enable verify button if at least one image is selected
+            const verifyBtn = document.getElementById('verifyImageBtn');
+            if (selectedImages.length > 0) {
+                verifyBtn.disabled = false;
+                verifyBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                verifyBtn.disabled = true;
+                verifyBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        function verifyImageSelection() {
+            const feedback = document.getElementById('imageFeedback');
+            const correctSelections = selectedImages.filter(i => correctImages.includes(i));
+            const incorrectSelections = selectedImages.filter(i => !correctImages.includes(i));
+            
+            if (correctSelections.length === correctImages.length && incorrectSelections.length === 0) {
+                feedback.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="font-bold">Perfect! Verification Complete!</span>
+                        </div>
+                        <p class="text-sm">Great job identifying healthy foods!</p>
+                    </div>
+                `;
+                isVerified = true;
+                setTimeout(() => proceedToFinalSection(), 2000);
+            } else {
+                feedback.innerHTML = `
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="font-bold">Not quite right</span>
+                        </div>
+                        <p class="text-sm">Please select only the healthy food items.</p>
+                    </div>
+                `;
+            }
+            feedback.classList.remove('hidden');
+        }
+
+        // Slider Functions
+        function updateSliderValue(slider) {
+            document.getElementById('sliderDisplay').textContent = slider.value;
+        }
+
+        function verifySlider() {
+            const slider = document.getElementById('verificationSlider');
+            const target = parseInt(slider.dataset.target);
+            const value = parseInt(slider.value);
+            const feedback = document.getElementById('sliderFeedback');
+            
+            if (Math.abs(value - target) <= 2) {
+                feedback.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="font-bold">Excellent! Verification Complete!</span>
+                        </div>
+                        <p class="text-sm">Perfect precision! You're clearly human.</p>
+                    </div>
+                `;
+                isVerified = true;
+                setTimeout(() => proceedToFinalSection(), 2000);
+            } else {
+                feedback.innerHTML = `
+                    <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-xl">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="font-bold">Close, but not quite</span>
+                        </div>
+                        <p class="text-sm">Try to get closer to ${target}. You're at ${value}.</p>
+                    </div>
+                `;
+            }
+            feedback.classList.remove('hidden');
+        }
+
+        // Proceed to Final Section
+        function proceedToFinalSection() {
+            if (!isVerified) return;
+            
+            const verificationSection = document.getElementById('verificationSection');
+            verificationSection.style.opacity = '0';
+            verificationSection.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                verificationSection.classList.add('hidden');
+                verificationSection.style.opacity = '';
+                verificationSection.style.transform = '';
+                
+                const finalSection = document.getElementById('finalSection');
+                finalSection.classList.remove('hidden');
+                finalSection.classList.add('fade-in');
+                
+                currentQuestion++;
+                updateNavigation();
+                updateProgress();
+            }, 300);
+        }
+
+        // Add shake animation CSS
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+            
+            .slider {
+                background: linear-gradient(to right, #b4300a 0%, #7a150b 100%);
+            }
+            
+            .slider::-webkit-slider-thumb {
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #ffffff;
+                border: 2px solid #b4300a;
+                cursor: pointer;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            }
+            
+            .slider::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #ffffff;
+                border: 2px solid #b4300a;
+                cursor: pointer;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            }
+        `;
+        document.head.appendChild(shakeStyle);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9730638cd053fadc',t:'MTc1NTg0NDkzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9730973ea49b5963',t:'MTc1NTg0NzA1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
