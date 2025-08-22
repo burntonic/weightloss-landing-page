@@ -862,7 +862,7 @@
                     </div>
                     
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 mb-4 sm:mb-6 font-display tracking-tight">
-                     Verification Complete!
+                        🎉 Verification Complete!
                     </h2>
                     
                     <div class="max-w-3xl mx-auto mb-8 sm:mb-10">
@@ -1521,6 +1521,26 @@
                 finalSection.classList.remove('hidden');
                 finalSection.classList.add('fade-in');
                 
+                // Hide the header description and badges after verification
+                const headerDescription = document.querySelector('.text-lg.sm\\:text-xl.md\\:text-2xl.text-white.opacity-90');
+                const badgeContainer = document.querySelector('.flex.flex-col.sm\\:flex-row.flex-wrap.items-center.justify-center.mt-6');
+                
+                if (headerDescription) {
+                    headerDescription.style.opacity = '0';
+                    headerDescription.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        headerDescription.style.display = 'none';
+                    }, 300);
+                }
+                
+                if (badgeContainer) {
+                    badgeContainer.style.opacity = '0';
+                    badgeContainer.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        badgeContainer.style.display = 'none';
+                    }, 300);
+                }
+                
                 currentQuestion++;
                 updateNavigation();
                 updateProgress();
@@ -1563,5 +1583,5 @@
         `;
         document.head.appendChild(shakeStyle);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9730973ea49b5963',t:'MTc1NTg0NzA1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9730bb2a619d1b69',t:'MTc1NTg0ODUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
