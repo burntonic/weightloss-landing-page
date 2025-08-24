@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Health Assessment - Personalized Fat-Burning Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -20,40 +21,156 @@
                         'dark-alt': '#26272b'
                     },
                     fontFamily: {
-                        'display': ['Poppins', 'Inter', 'sans-serif'],
-                        'body': ['Inter', 'Poppins', 'sans-serif']
+                        'display': ['Crimson Text', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Space Grotesk', 'sans-serif'],
+                        'heading': ['Poppins', 'sans-serif']
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Crimson+Text:wght@400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { 
-            font-family: 'Poppins', 'Inter', sans-serif;
-            background: linear-gradient(135deg, #b4300a 0%, #7a150b 50%, #25262a 100%);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #b4300a 0%, #7a150b 25%, #25262a 50%, #26272b 75%, #b4300a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
             min-height: 100vh;
             font-weight: 400;
             letter-spacing: -0.01em;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(180, 48, 10, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(122, 21, 11, 0.3) 0%, transparent 60%),
+                radial-gradient(circle at 40% 40%, rgba(37, 38, 42, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 60% 60%, rgba(180, 48, 10, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            animation: backgroundPulse 8s ease-in-out infinite;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(180, 48, 10, 0.05) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(122, 21, 11, 0.05) 50%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            animation: overlayShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes overlayShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(10px) translateY(-10px); }
+            50% { transform: translateX(-5px) translateY(10px); }
+            75% { transform: translateX(5px) translateY(-5px); }
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Crimson Text', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .font-accent {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+        }
+        
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(40px) saturate(180%);
+            border: 3px solid rgba(255, 255, 255, 0.6);
             box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.1),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
+                0 50px 100px rgba(0, 0, 0, 0.25),
+                0 30px 60px rgba(180, 48, 10, 0.15),
+                0 20px 40px rgba(255, 255, 255, 0.2) inset,
+                0 10px 30px rgba(122, 21, 11, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 60px 120px rgba(0, 0, 0, 0.3),
+                0 40px 80px rgba(180, 48, 10, 0.2),
+                0 25px 50px rgba(255, 255, 255, 0.25) inset,
+                0 15px 40px rgba(122, 21, 11, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(180, 48, 10, 0.6), rgba(255, 255, 255, 0.8), rgba(122, 21, 11, 0.6), transparent);
+            border-radius: inherit;
+        }
+        
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(180, 48, 10, 0.05) 100%);
+            border-radius: inherit;
+            pointer-events: none;
         }
         
         .option-card {
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
-            border: 2px solid rgba(226, 232, 240, 0.6);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(248, 250, 252, 0.95));
+            backdrop-filter: blur(25px) saturate(150%);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            min-height: 120px;
             position: relative;
             overflow: hidden;
-            min-height: 80px;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.12),
+                0 8px 25px rgba(180, 48, 10, 0.08),
+                0 4px 15px rgba(122, 21, 11, 0.05);
         }
         
         .option-card::before {
@@ -63,75 +180,142 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(180, 48, 10, 0.1), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(180, 48, 10, 0.15), rgba(255, 255, 255, 0.3), rgba(122, 21, 11, 0.15), transparent);
+            transition: left 1s ease;
+            z-index: 1;
+        }
+        
+        .option-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(180, 48, 10, 0.08), transparent 50%, rgba(122, 21, 11, 0.06), transparent);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            animation: rotate 25s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .option-card:hover::before {
             left: 100%;
         }
         
+        .option-card:hover::after {
+            opacity: 0.4;
+        }
+        
         .option-card:hover {
-            transform: translateY(-2px) scale(1.01);
+            transform: translateY(-10px) scale(1.04);
             box-shadow: 
-                0 15px 30px rgba(0, 0, 0, 0.1),
-                0 0 0 1px rgba(180, 48, 10, 0.1);
-            border-color: rgba(180, 48, 10, 0.3);
+                0 35px 70px rgba(0, 0, 0, 0.18),
+                0 20px 45px rgba(180, 48, 10, 0.15),
+                0 10px 25px rgba(122, 21, 11, 0.1),
+                0 5px 15px rgba(255, 255, 255, 0.2) inset;
+            border-color: rgba(180, 48, 10, 0.4);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.96));
         }
         
         .option-card.selected {
-            background: linear-gradient(145deg, #fef2f2, #fee2e2);
-            border-color: #b4300a;
-            transform: translateY(-2px) scale(1.01);
+            background: linear-gradient(145deg, rgba(180, 48, 10, 0.08), rgba(122, 21, 11, 0.05));
+            border: 3px solid rgba(180, 48, 10, 0.6);
+            transform: translateY(-10px) scale(1.04);
             box-shadow: 
-                0 15px 30px rgba(180, 48, 10, 0.2),
-                0 0 0 1px #b4300a;
+                0 40px 80px rgba(180, 48, 10, 0.25),
+                0 25px 50px rgba(122, 21, 11, 0.15),
+                0 15px 30px rgba(0, 0, 0, 0.1),
+                0 0 0 4px rgba(180, 48, 10, 0.1),
+                0 5px 20px rgba(255, 255, 255, 0.3) inset;
+        }
+        
+        .option-card.selected::after {
+            opacity: 0.6;
+        }
+        
+        .option-card.selected::before {
+            background: linear-gradient(90deg, transparent, rgba(180, 48, 10, 0.2), rgba(255, 255, 255, 0.4), rgba(122, 21, 11, 0.2), transparent);
         }
         
         .progress-bar {
-            background: linear-gradient(90deg, #b4300a, #7a150b);
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #b4300a 0%, #7a150b 25%, #25262a 50%, #b4300a 75%, #7a150b 100%);
+            background-size: 300% 100%;
+            animation: progressShimmer 4s ease-in-out infinite;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                0 4px 15px rgba(180, 48, 10, 0.4),
+                0 2px 8px rgba(122, 21, 11, 0.3),
+                0 1px 4px rgba(0, 0, 0, 0.2) inset;
+        }
+        
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            border-radius: inherit;
         }
         
         .progress-bar::after {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: progressGlow 2.5s ease-in-out infinite;
         }
         
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        @keyframes progressShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes progressGlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         
         .fade-in {
-            animation: fadeIn 0.6s ease-out;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from { 
                 opacity: 0; 
-                transform: translateY(20px); 
+                transform: translateY(40px) scale(0.95);
             }
             to { 
                 opacity: 1; 
-                transform: translateY(0); 
+                transform: translateY(0) scale(1);
             }
         }
         
         .premium-button {
-            background: linear-gradient(135deg, #b4300a 0%, #7a150b 50%, #25262a 100%);
-            background-size: 200% 200%;
-            transition: all 0.4s ease;
+            background: linear-gradient(135deg, #b4300a 0%, #7a150b 25%, #25262a 50%, #b4300a 75%, #7a150b 100%);
+            background-size: 400% 400%;
+            animation: buttonGradient 8s ease infinite;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                0 15px 35px rgba(180, 48, 10, 0.4),
+                0 8px 20px rgba(122, 21, 11, 0.3),
+                0 4px 10px rgba(0, 0, 0, 0.2);
         }
         
         .premium-button::before {
@@ -141,308 +325,264 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+            z-index: 1;
+        }
+        
+        .premium-button::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            height: 40%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: inherit;
+            z-index: 0;
         }
         
         .premium-button:hover::before {
             left: 100%;
         }
         
+        @keyframes buttonGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
         .premium-button:hover {
-            background-position: 100% 0;
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(180, 48, 10, 0.3);
+            transform: translateY(-6px) scale(1.06);
+            box-shadow: 
+                0 30px 60px rgba(180, 48, 10, 0.5),
+                0 20px 40px rgba(122, 21, 11, 0.4),
+                0 10px 25px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(255, 255, 255, 0.3);
         }
         
         .question-number {
-            background: linear-gradient(135deg, #b4300a, #7a150b);
-            box-shadow: 0 8px 20px rgba(180, 48, 10, 0.3);
+            background: linear-gradient(135deg, #b4300a, #7a150b, #25262a);
+            box-shadow: 
+                0 20px 40px rgba(180, 48, 10, 0.5),
+                0 10px 25px rgba(122, 21, 11, 0.3),
+                0 5px 15px rgba(0, 0, 0, 0.2),
+                0 2px 8px rgba(255, 255, 255, 0.2) inset;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .question-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent 50%, rgba(180, 48, 10, 0.2), transparent);
+            animation: rotate 12s linear infinite;
+        }
+        
+        .question-number::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            height: 40%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            border-radius: inherit;
+        }
+        
+        .logo-glow {
+            position: relative;
+        }
+        
+        .logo-glow::before {
+            content: '';
+            position: absolute;
+            inset: -25px;
+            background: conic-gradient(from 0deg, #b4300a, #7a150b, #25262a, #b4300a, #7a150b, #25262a, #b4300a);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: logoRotate 25s linear infinite;
+            filter: blur(25px);
+        }
+        
+        .logo-glow::after {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            background: radial-gradient(circle, rgba(180, 48, 10, 0.3) 0%, rgba(122, 21, 11, 0.2) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: logoPulse 4s ease-in-out infinite;
+            filter: blur(15px);
+        }
+        
+        @keyframes logoRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes logoPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
         }
         
         .floating-elements {
-            position: absolute;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
             pointer-events: none;
+            z-index: 1;
         }
         
-        .floating-circle {
+        .floating-element {
             position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(180, 48, 10, 0.8) 0%, rgba(122, 21, 11, 0.6) 50%, rgba(255, 255, 255, 0.4) 100%);
             border-radius: 50%;
-            opacity: 0.1;
-            animation: float 8s ease-in-out infinite;
+            animation: float 25s infinite linear;
+            box-shadow: 
+                0 0 10px rgba(180, 48, 10, 0.5),
+                0 0 20px rgba(122, 21, 11, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.2);
         }
         
-        .circle-1 {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, #b4300a, #7a150b);
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
+        .floating-element:nth-child(even) {
+            background: radial-gradient(circle, rgba(122, 21, 11, 0.8) 0%, rgba(37, 38, 42, 0.6) 50%, rgba(255, 255, 255, 0.3) 100%);
+            animation-duration: 30s;
+            width: 6px;
+            height: 6px;
         }
         
-        .circle-2 {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, #7a150b, #25262a);
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-        
-        .circle-3 {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #25262a, #b4300a);
-            bottom: 20%;
-            left: 15%;
-            animation-delay: 4s;
+        .floating-element:nth-child(3n) {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(180, 48, 10, 0.4) 50%, transparent 100%);
+            animation-duration: 22s;
+            width: 4px;
+            height: 4px;
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-15px) rotate(2deg); }
-            66% { transform: translateY(-8px) rotate(-2deg); }
-        }
-        
-        .success-icon {
-            animation: successPulse 0.6s ease-out;
-        }
-        
-        @keyframes successPulse {
-            0% { transform: scale(0) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(180deg); }
-            100% { transform: scale(1) rotate(360deg); }
-        }
-        
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-3px) scale(1.05); }
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) skewX(-12deg); }
-            100% { transform: translateX(200%) skewX(-12deg); }
-        }
-        
-        .animate-shine {
-            animation: shine 3s ease-in-out infinite;
-        }
-        
-        /* Typography enhancements */
-        .font-display {
-            font-family: 'Poppins', 'Inter', sans-serif;
-            font-weight: 600;
-            letter-spacing: -0.025em;
-        }
-        
-        .font-body {
-            font-family: 'Inter', 'Poppins', sans-serif;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', 'Inter', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        
-        /* Mobile-specific optimizations */
-        @media (max-width: 640px) {
-            .option-card:hover {
-                transform: none;
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
             }
-            
-            .option-card:active {
-                transform: scale(0.98);
+            10% {
+                opacity: 1;
             }
-            
-            .floating-circle {
-                opacity: 0.05;
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .hidden { display: none; }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+        
+        @keyframes confettiFall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .verification-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(120, 119, 198, 0.3);
+            box-shadow: 
+                0 25px 50px rgba(120, 119, 198, 0.2),
+                0 10px 25px rgba(255, 119, 198, 0.1);
+        }
+        
+        .success-glow {
+            box-shadow: 
+                0 0 20px rgba(34, 197, 94, 0.5),
+                0 0 40px rgba(34, 197, 94, 0.3),
+                0 0 60px rgba(34, 197, 94, 0.1);
+        }
+        
+        .pulse-ring {
+            animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulseRing {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.4);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body class="min-h-screen relative">
-    <!-- Floating Background Elements -->
+    <!-- Floating Animation Elements -->
     <div class="floating-elements">
-        <div class="floating-circle circle-1"></div>
-        <div class="floating-circle circle-2"></div>
-        <div class="floating-circle circle-3"></div>
+        <div class="floating-element" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-element" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="floating-element" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="floating-element" style="left: 40%; animation-delay: 6s;"></div>
+        <div class="floating-element" style="left: 50%; animation-delay: 8s;"></div>
+        <div class="floating-element" style="left: 60%; animation-delay: 10s;"></div>
+        <div class="floating-element" style="left: 70%; animation-delay: 12s;"></div>
+        <div class="floating-element" style="left: 80%; animation-delay: 14s;"></div>
+        <div class="floating-element" style="left: 90%; animation-delay: 16s;"></div>
     </div>
-
     <!-- Header -->
     <div class="relative z-10 pt-6 sm:pt-12 pb-4 sm:pb-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-6 sm:mb-12">
-                <!-- Animated Logo - Premium Design -->
                 <div class="relative inline-block mb-8 sm:mb-12">
-                    <div class="logo-container w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 mx-auto relative">
-                        <!-- Outer Glow Ring -->
-                        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-gold opacity-30 blur-2xl animate-pulse"></div>
-                        
-                        <!-- Animated Background Rings -->
-                        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Outermost Ring -->
-                            <circle cx="50" cy="50" r="48" fill="none" stroke="url(#gradient1)" stroke-width="1" opacity="0.6">
-                                <animateTransform attributeName="transform" type="rotate" values="0 50 50;360 50 50" dur="12s" repeatCount="indefinite"/>
-                            </circle>
-                            
-                            <!-- Outer Ring -->
-                            <circle cx="50" cy="50" r="42" fill="none" stroke="url(#gradient2)" stroke-width="2" opacity="0.8">
-                                <animateTransform attributeName="transform" type="rotate" values="0 50 50;360 50 50" dur="8s" repeatCount="indefinite"/>
-                            </circle>
-                            
-                            <!-- Middle Ring -->
-<!--                             <circle cx="50" cy="50" r="35" fill="none" stroke="url(#gradient3)" stroke-width="1.5" opacity="0.7">
-                                <animateTransform attributeName="transform" type="rotate" values="360 50 50;0 50 50" dur="6s" repeatCount="indefinite"/>
-                            </circle> -->
-                            
-                            <!-- Inner Ring -->
-                            <circle cx="50" cy="50" r="28" fill="none" stroke="url(#gradient4)" stroke-width="1" opacity="0.5">
-                                <animateTransform attributeName="transform" type="rotate" values="0 50 50;360 50 50" dur="4s" repeatCount="indefinite"/>
-                            </circle>
-                            
-                            <!-- Floating Dots - Enhanced -->
-                            <circle cx="20" cy="20" r="1.5" fill="#b4300a" opacity="0.8">
-                                <animate attributeName="cy" values="20;15;20" dur="2s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
-                                <animate attributeName="r" values="1.5;2;1.5" dur="2s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="80" cy="20" r="1.5" fill="#7a150b" opacity="0.8">
-                                <animate attributeName="cy" values="20;25;20" dur="2.5s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite"/>
-                                <animate attributeName="r" values="1.5;2;1.5" dur="2.5s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="20" cy="80" r="1.5" fill="#25262a" opacity="0.8">
-                                <animate attributeName="cy" values="80;75;80" dur="3s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
-                                <animate attributeName="r" values="1.5;2;1.5" dur="3s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="80" cy="80" r="1.5" fill="#b4300a" opacity="0.8">
-                                <animate attributeName="cy" values="80;85;80" dur="2.2s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2.2s" repeatCount="indefinite"/>
-                                <animate attributeName="r" values="1.5;2;1.5" dur="2.2s" repeatCount="indefinite"/>
-                            </circle>
-                            
-                            <!-- Additional Corner Dots -->
-                            <circle cx="50" cy="10" r="1" fill="#ffffff" opacity="0.6">
-                                <animate attributeName="cy" values="10;8;10" dur="1.8s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="50" cy="90" r="1" fill="#ffffff" opacity="0.6">
-                                <animate attributeName="cy" values="90;92;90" dur="2.1s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.6;1;0.6" dur="2.1s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="10" cy="50" r="1" fill="#ffffff" opacity="0.6">
-                                <animate attributeName="cx" values="10;8;10" dur="2.3s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.6;1;0.6" dur="2.3s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="90" cy="50" r="1" fill="#ffffff" opacity="0.6">
-                                <animate attributeName="cx" values="90;92;90" dur="1.9s" repeatCount="indefinite"/>
-                                <animate attributeName="opacity" values="0.6;1;0.6" dur="1.9s" repeatCount="indefinite"/>
-                            </circle>
-                            
-                            <!-- Gradient Definitions -->
-                            <defs>
-                                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#b4300a;stop-opacity:1" />
-                                    <stop offset="50%" style="stop-color:#7a150b;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#25262a;stop-opacity:1" />
-                                </linearGradient>
-                                <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#b4300a;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#7a150b;stop-opacity:1" />
-                                </linearGradient>
-                                <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#7a150b;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#25262a;stop-opacity:1" />
-                                </linearGradient>
-                                <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
-                                    <stop offset="100%" style="stop-color:#b4300a;stop-opacity:0.8" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        
-                        <!-- Logo Container with Enhanced Design -->
+                    <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto relative logo-glow">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 opacity-40 blur-3xl animate-pulse pulse-ring"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="logo-wrapper w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full border-4 border-white bg-white shadow-2xl flex items-center justify-center overflow-hidden relative" style="animation: logoFloat 3s ease-in-out infinite;">
-                                <!-- Inner Shadow Ring -->
-                                <div class="absolute inset-1 rounded-full border border-gray-100"></div>
-                                
-                                <!-- Your BurnTonic Logo -->
-                                <img src="burntoniclogo.png" 
-                                     alt="BurnTonic Logo" 
-                                     class="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain drop-shadow-lg"
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                
-                                <!-- Fallback if logo fails to load -->
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-primary via-accent to-gold rounded-2xl items-center justify-center shadow-lg relative overflow-hidden hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-br from-primary via-accent to-gold opacity-90"></div>
-                                    <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-20 animate-pulse"></div>
-                                    <span class="text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl relative z-10 drop-shadow-lg">BT</span>
-                                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 -skew-x-12 animate-shine"></div>
+                            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white bg-white shadow-2xl flex items-center justify-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-br from-primary via-accent to-dark opacity-15 animate-pulse"></div>
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary via-accent to-dark rounded-2xl flex items-center justify-center relative z-10 shadow-lg border-2 border-white border-opacity-30">
+                                    <span class="text-white font-bold text-lg sm:text-xl font-accent drop-shadow-lg">BT</span>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white opacity-20 rounded-2xl"></div>
                                 </div>
-                                
-                                <!-- Reflection Effect -->
-                                <div class="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-transparent to-white opacity-20"></div>
                             </div>
                         </div>
-                        
-                        <!-- Enhanced Particle Effects -->
-                        <div class="absolute inset-0 pointer-events-none">
-                            <div class="absolute top-4 left-4 w-2 h-2 bg-white rounded-full opacity-60 animate-ping" style="animation-delay: 0s;"></div>
-                            <div class="absolute top-8 right-6 w-1 h-1 bg-accent rounded-full opacity-80 animate-ping" style="animation-delay: 1s;"></div>
-                            <div class="absolute bottom-6 left-8 w-1.5 h-1.5 bg-gold rounded-full opacity-70 animate-ping" style="animation-delay: 2s;"></div>
-                            <div class="absolute bottom-4 right-4 w-1 h-1 bg-white rounded-full opacity-60 animate-ping" style="animation-delay: 3s;"></div>
-                        </div>
                     </div>
-                    
-                    <!-- Multi-layered Glow Effects -->
-                    <div class="absolute inset-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 mx-auto rounded-full bg-gradient-to-r from-primary via-accent to-gold opacity-10 blur-3xl animate-pulse"></div>
-                    <div class="absolute inset-2 w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 mx-auto rounded-full bg-gradient-to-r from-accent via-primary to-dark opacity-15 blur-2xl animate-pulse" style="animation-delay: 1s;"></div>
                 </div>
                 
-                <h1 class="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-4 sm:mb-6 leading-tight px-2 font-display tracking-tight">
-                    Premium Health
-                    <span class="block bg-gradient-to-r from-orange-300 via-red-300 to-red-200 bg-clip-text text-transparent font-black">
+                <h1 class="text-3xl sm:text-5xl md:text-7xl font-black mb-4 sm:mb-6 leading-tight px-2 font-display">
+                    <span class="block bg-gradient-to-r from-white via-orange-100 to-red-100 bg-clip-text text-transparent drop-shadow-2xl">
+                        Premium Health
+                    </span>
+                    <span class="block bg-gradient-to-r from-orange-200 via-red-200 to-gray-200 bg-clip-text text-transparent drop-shadow-lg">
                         Assessment
                     </span>
                 </h1>
-                
-                <p class="text-lg sm:text-xl md:text-2xl text-white opacity-90 max-w-3xl mx-auto leading-relaxed font-medium px-4 font-body tracking-wide">
-                    Get your personalized, science-backed fat-burning transformation guide
-                </p>
-                
-                <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center mt-6 sm:mt-8 gap-3 sm:gap-6 px-4">
-                    <div class="glass-card rounded-full px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto">
-                        <span class="text-gray-700 font-medium text-sm sm:text-base">✨ Personalized Results</span>
-                    </div>
-                    <div class="glass-card rounded-full px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto">
-                        <span class="text-gray-700 font-medium text-sm sm:text-base">🔬 Science-Based</span>
-                    </div>
-                    <div class="glass-card rounded-full px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto">
-                        <span class="text-gray-700 font-medium text-sm sm:text-base">⚡ Instant Access</span>
-                    </div>
-                </div>
             </div>
 
-            <!-- Enhanced Progress Bar -->
-            <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-8">
+            <!-- Progress Bar -->
+            <div id="progressSection" class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-8">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2 sm:gap-0">
                     <div class="flex items-center space-x-2 sm:space-x-3">
                         <div class="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full animate-pulse"></div>
-                        <span class="text-gray-700 font-semibold text-sm sm:text-base">Assessment Progress</span>
+                        <span class="text-gray-700 font-semibold text-sm sm:text-base font-accent">Assessment Progress</span>
                     </div>
                     <div class="flex items-center space-x-2 sm:space-x-3">
-                        <span id="progressText" class="text-gray-700 font-bold text-base sm:text-lg">0% Complete</span>
+                        <span id="progressText" class="text-gray-700 font-bold text-base sm:text-lg font-accent">0% Complete</span>
                         <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                            <span id="progressStep" class="text-gray-700 font-bold text-xs sm:text-sm">0/4</span>
+                            <span id="progressStep" class="text-gray-700 font-bold text-xs sm:text-sm font-accent">0/4</span>
                         </div>
                     </div>
                 </div>
@@ -463,7 +603,7 @@
                         1
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display tracking-tight">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display">
                             What is your age range?
                         </h2>
                         <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -477,8 +617,8 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-accent rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                             <span class="text-xl sm:text-2xl">🌟</span>
                         </div>
-                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-display">18-29 years</div>
-                        <div class="text-gray-600 font-semibold text-sm sm:text-base font-body">Peak Metabolism</div>
+                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">18-29 years</div>
+                        <div class="text-gray-600 font-semibold text-sm sm:text-base">Peak Metabolism</div>
                         <div class="text-xs sm:text-sm text-gray-500 mt-2">Highest natural fat-burning potential</div>
                     </div>
                     
@@ -486,7 +626,7 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent to-gold rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                             <span class="text-xl sm:text-2xl">💪</span>
                         </div>
-                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">30-39 years</div>
+                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">30-39 years</div>
                         <div class="text-gray-600 font-medium text-sm sm:text-base">Prime Adult</div>
                         <div class="text-xs sm:text-sm text-gray-500 mt-2">Optimal strength & energy balance</div>
                     </div>
@@ -495,7 +635,7 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-gold to-primary rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                             <span class="text-xl sm:text-2xl">🎯</span>
                         </div>
-                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">40-49 years</div>
+                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">40-49 years</div>
                         <div class="text-gray-600 font-medium text-sm sm:text-base">Focused Approach</div>
                         <div class="text-xs sm:text-sm text-gray-500 mt-2">Strategic metabolism support needed</div>
                     </div>
@@ -504,7 +644,7 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                             <span class="text-xl sm:text-2xl">🧘</span>
                         </div>
-                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">50-59 years</div>
+                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">50-59 years</div>
                         <div class="text-gray-600 font-medium text-sm sm:text-base">Balanced Lifestyle</div>
                         <div class="text-xs sm:text-sm text-gray-500 mt-2">Sustainable wellness focus</div>
                     </div>
@@ -513,7 +653,7 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-blue-400 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                             <span class="text-xl sm:text-2xl">🌿</span>
                         </div>
-                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">60+ years</div>
+                        <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">60+ years</div>
                         <div class="text-gray-600 font-medium text-sm sm:text-base">Gentle Methods</div>
                         <div class="text-xs sm:text-sm text-gray-500 mt-2">Safe, sustainable approaches</div>
                     </div>
@@ -529,7 +669,7 @@
                         2
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display tracking-tight">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display">
                             How would you describe your current weight status?
                         </h2>
                         <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -545,7 +685,7 @@
                                 <span class="text-xl sm:text-2xl">📊</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Slightly overweight</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Slightly overweight</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">5-15 lbs above ideal</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Quick results possible</div>
                             </div>
@@ -558,7 +698,7 @@
                                 <span class="text-xl sm:text-2xl">📈</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Moderately overweight</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Moderately overweight</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">15-30 lbs above ideal</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Structured approach needed</div>
                             </div>
@@ -571,7 +711,7 @@
                                 <span class="text-xl sm:text-2xl">🎯</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Significantly overweight</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Significantly overweight</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">30-50 lbs above ideal</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Comprehensive plan required</div>
                             </div>
@@ -584,7 +724,7 @@
                                 <span class="text-xl sm:text-2xl">🚀</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Major transformation</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Major transformation</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">50+ lbs above ideal</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Life-changing journey ahead</div>
                             </div>
@@ -602,7 +742,7 @@
                         3
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display tracking-tight">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display">
                             What is your current activity level?
                         </h2>
                         <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -618,7 +758,7 @@
                                 <span class="text-xl sm:text-2xl">💺</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Sedentary</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Sedentary</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">Desk job, minimal exercise</div>
                                 <div class="text-xs sm:text-sm text-gray-500">We'll start gentle and build up</div>
                             </div>
@@ -631,7 +771,7 @@
                                 <span class="text-xl sm:text-2xl">🚶</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Lightly active</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Lightly active</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">Light exercise 1-3 days/week</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Perfect foundation to build on</div>
                             </div>
@@ -644,7 +784,7 @@
                                 <span class="text-xl sm:text-2xl">🏃</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Moderately active</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Moderately active</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">Exercise 3-5 days/week</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Great base for optimization</div>
                             </div>
@@ -657,7 +797,7 @@
                                 <span class="text-xl sm:text-2xl">💪</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Very active</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Very active</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">Exercise 6-7 days/week</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Advanced strategies available</div>
                             </div>
@@ -675,7 +815,7 @@
                         4
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display tracking-tight">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 font-display">
                             What is your primary goal?
                         </h2>
                         <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -691,7 +831,7 @@
                                 <span class="text-xl sm:text-2xl">⚡</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Lose weight quickly</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Lose weight quickly</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">Fast results, intensive approach</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Accelerated fat-burning protocols</div>
                             </div>
@@ -704,7 +844,7 @@
                                 <span class="text-xl sm:text-2xl">🌱</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Sustainable weight loss</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Sustainable weight loss</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">Steady, long-term approach</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Lifestyle-based transformation</div>
                             </div>
@@ -717,7 +857,7 @@
                                 <span class="text-xl sm:text-2xl">🔋</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Boost energy levels</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Boost energy levels</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">Feel more energetic daily</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Metabolic optimization focus</div>
                             </div>
@@ -730,7 +870,7 @@
                                 <span class="text-xl sm:text-2xl">❤️</span>
                             </div>
                             <div class="flex-1 text-center sm:text-left">
-                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2">Improve overall health</div>
+                                <div class="font-bold text-gray-800 text-lg sm:text-xl mb-2 font-accent">Improve overall health</div>
                                 <div class="text-gray-600 font-medium mb-1 text-sm sm:text-base">Better health markers</div>
                                 <div class="text-xs sm:text-sm text-gray-500">Holistic wellness approach</div>
                             </div>
@@ -745,65 +885,77 @@
             <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 mb-6 sm:mb-8">
                 <div class="text-center">
                     <div class="relative inline-block mb-6 sm:mb-8">
-                        <div class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto">
+                        <div class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto shadow-2xl">
                             <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                             </svg>
                         </div>
-                        <div class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center animate-pulse">
-                            <span class="text-white font-bold text-xs sm:text-sm">🛡️</span>
-                        </div>
                     </div>
                     
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-gray-800 mb-4 sm:mb-6 font-display tracking-tight">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 font-display">
                         🔐 Human Verification Required
                     </h2>
                     
                     <div class="max-w-2xl mx-auto mb-8 sm:mb-10">
-                        <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 px-2">
-                            To protect our premium content and ensure you're a real person, please complete this quick verification challenge.
+                        <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6 px-2 font-body">
+                            To protect our premium content and ensure you're a real person, please choose your preferred verification method.
                         </p>
+                    </div>
+                    
+                    <!-- Verification Method Selection -->
+                    <div class="max-w-2xl mx-auto mb-8 sm:mb-10">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 font-heading">Choose Verification Method:</h3>
                         
-                        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 bg-blue-50 border border-blue-200">
-                            <div class="flex items-center justify-center mb-3 sm:mb-4">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="text-blue-800 font-semibold text-sm sm:text-base">Security Notice</span>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Math Challenge Option -->
+                            <div class="option-card rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center group cursor-pointer" onclick="selectVerificationMethod('math')">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                    <span class="text-2xl">🧮</span>
+                                </div>
+                                <div class="font-bold text-gray-800 text-lg mb-2 font-heading">Math Challenge</div>
+                                <div class="text-gray-600 font-medium text-sm">Solve a simple equation</div>
+                                <div class="text-xs text-gray-500 mt-2">Quick & easy for math lovers</div>
                             </div>
-                            <p class="text-blue-700 text-xs sm:text-sm">
-                                This verification helps us prevent automated access and ensures our personalized health guides reach real people who need them.
-                            </p>
+                            
+                            <!-- Image Challenge Option -->
+                            <div class="option-card rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center group cursor-pointer" onclick="selectVerificationMethod('image')">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                    <span class="text-2xl">🖼️</span>
+                                </div>
+                                <div class="font-bold text-gray-800 text-lg mb-2 font-heading">Image Challenge</div>
+                                <div class="text-gray-600 font-medium text-sm">Select matching images</div>
+                                <div class="text-xs text-gray-500 mt-2">Visual & intuitive verification</div>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Math Challenge -->
-                    <div class="max-w-md mx-auto mb-8 sm:mb-10">
-                        <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200">
+                    <div id="mathChallenge" class="max-w-md mx-auto mb-8 sm:mb-10 hidden">
+                        <div class="verification-card rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white to-blue-50 border-2 border-blue-200">
                             <div class="flex items-center justify-center mb-4 sm:mb-6">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3">
-                                    <span class="text-white font-bold text-sm sm:text-base">🧮</span>
+                                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mr-3">
+                                    <span class="text-white font-bold text-sm">🧮</span>
                                 </div>
-                                <h3 class="text-lg sm:text-xl font-bold text-gray-800">Math Challenge</h3>
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-800 font-heading">Math Challenge</h3>
                             </div>
                             
                             <div class="text-center mb-4 sm:mb-6">
-                                <div class="text-2xl sm:text-3xl font-black text-gray-800 mb-2" id="mathQuestion">
+                                <div class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 font-accent" id="mathQuestion">
                                     Loading...
                                 </div>
-                                <p class="text-gray-600 text-sm">Solve this simple equation</p>
+                                <p class="text-gray-600 text-sm font-body">Solve this simple equation</p>
                             </div>
                             
                             <div class="flex flex-col items-center space-y-4">
                                 <input type="number" 
                                        id="mathAnswer" 
                                        placeholder="Enter your answer"
-                                       class="w-full px-4 py-3 text-center text-lg font-bold border-2 border-gray-300 rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-20 transition-all duration-300"
+                                       class="w-full px-4 py-3 text-center text-lg font-bold border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 transition-all duration-300 font-accent"
                                        onkeypress="if(event.key==='Enter') verifyMath()">
                                 
                                 <button onclick="verifyMath()" 
-                                        id="verifyBtn"
-                                        class="w-full premium-button text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105">
+                                        id="verifyMathBtn"
+                                        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 font-accent">
                                     Verify Answer
                                 </button>
                             </div>
@@ -814,28 +966,37 @@
                         </div>
                     </div>
                     
-                    <!-- Alternative Verification Methods -->
-                    <div class="max-w-lg mx-auto">
-                        <div class="text-center mb-4">
-                            <p class="text-gray-600 text-sm">Having trouble? Try these alternatives:</p>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                            <button onclick="showImageChallenge()" 
-                                    class="flex items-center justify-center px-4 py-3 bg-white bg-opacity-80 rounded-xl hover:bg-opacity-100 transition-all duration-300 border border-gray-200 hover:border-primary group">
-                                <svg class="w-4 h-4 mr-2 text-gray-600 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <span class="text-sm font-medium text-gray-700 group-hover:text-primary">Image Challenge</span>
-                            </button>
+                    <!-- Image Challenge -->
+                    <div id="imageChallenge" class="max-w-2xl mx-auto mb-8 sm:mb-10 hidden">
+                        <div class="verification-card rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white to-green-50 border-2 border-green-200">
+                            <div class="flex items-center justify-center mb-4 sm:mb-6">
+                                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-3">
+                                    <span class="text-white font-bold text-sm">🖼️</span>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-800 font-heading">Image Challenge</h3>
+                            </div>
                             
-                            <button onclick="showSliderChallenge()" 
-                                    class="flex items-center justify-center px-4 py-3 bg-white bg-opacity-80 rounded-xl hover:bg-opacity-100 transition-all duration-300 border border-gray-200 hover:border-primary group">
-                                <svg class="w-4 h-4 mr-2 text-gray-600 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
-                                </svg>
-                                <span class="text-sm font-medium text-gray-700 group-hover:text-primary">Slider Challenge</span>
-                            </button>
+                            <div class="text-center mb-6">
+                                <p class="text-gray-700 font-medium mb-4 font-body" id="imageInstructions">
+                                    Select all images that contain: <span class="font-bold text-green-600" id="imageTarget">Loading...</span>
+                                </p>
+                            </div>
+                            
+                            <div class="grid grid-cols-3 gap-3 mb-6" id="imageGrid">
+                                <!-- Images will be generated here -->
+                            </div>
+                            
+                            <div class="text-center">
+                                <button onclick="verifyImages()" 
+                                        id="verifyImageBtn"
+                                        class="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-3 px-8 rounded-xl text-base transition-all duration-300 transform hover:scale-105 font-accent">
+                                    Verify Selection
+                                </button>
+                            </div>
+                            
+                            <div id="imageFeedback" class="mt-4 text-center hidden">
+                                <!-- Feedback will be inserted here -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -847,65 +1008,101 @@
             <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 mb-6 sm:mb-8">
                 <div class="text-center">
                     <div class="relative inline-block mb-6 sm:mb-8">
-                        <div class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-accent to-primary rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto success-icon">
+                        <div class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-accent to-primary rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto">
                             <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <div class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 bg-gold rounded-full flex items-center justify-center animate-pulse">
-                            <span class="text-white font-bold text-xs sm:text-sm">✓</span>
-                        </div>
-                        <div class="absolute -bottom-1 -left-1 sm:-bottom-2 sm:-left-2 w-4 h-4 sm:w-6 sm:h-6 bg-pink-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
-                        <div class="absolute top-0 left-0 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center animate-pulse" style="animation-delay: 1s;">
-                            <span class="text-white font-bold text-xs sm:text-sm">🛡️</span>
-                        </div>
                     </div>
                     
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 mb-4 sm:mb-6 font-display tracking-tight">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 mb-4 sm:mb-6 font-display">
                         🎉 Verification Complete!
                     </h2>
                     
                     <div class="max-w-3xl mx-auto mb-8 sm:mb-10">
                         <p class="text-lg sm:text-xl text-gray-700 leading-relaxed mb-4 sm:mb-6 px-2">
-                            Thank you for verifying! Click below to download your <span class="font-bold text-accent">free personalized guide</span>. 
+                            Thank you for verifying! Click below to download your <span class="font-bold text-accent font-accent">free personalized guide</span>. 
                             Please also fill out our Google Form so we can stay in touch, track your progress, 
-                            and support you in <span class="font-bold text-primary">losing fat as quickly as possible</span>.
+                            and support you in <span class="font-bold text-primary font-accent">losing fat as quickly as possible</span>.
                         </p>
+                    </div>
+                    
+                    <!-- Step 1: Complete Form First -->
+                    <div id="step1Container" class="mb-6 sm:mb-8">
+                        <div class="verification-card rounded-xl sm:rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto mb-6 border-2 border-blue-200 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400"></div>
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-white to-transparent opacity-20"></div>
+                                    <span class="text-white font-bold text-2xl font-accent relative z-10">1</span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 font-display">Step 1: Complete Progress Tracking Form</h3>
+                                <p class="text-gray-600 text-sm sm:text-base mb-6">
+                                    First, complete our tracking form so we can support your transformation journey and provide ongoing guidance.
+                                </p>
+                            </div>
+                            
+                            <button onclick="openGoogleForm()" 
+                                    id="formButton"
+                                    class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl font-accent">
+                                Complete Progress Tracking Form
+                            </button>
+                            
+                            <div class="mt-4 text-center">
+                                <p class="text-xs text-gray-500">
+                                    ⏱️ Takes only 2-3 minutes to complete
+                                </p>
+                            </div>
+                        </div>
                         
-                        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-8 text-sm text-gray-600 px-4">
-                            <div class="flex items-center bg-white bg-opacity-50 rounded-full px-3 sm:px-4 py-2 w-full sm:w-auto">
-                                <div class="w-2 h-2 bg-accent rounded-full mr-2 animate-pulse"></div>
-                                <span class="font-medium text-xs sm:text-sm">Personalized Plan</span>
-                            </div>
-                            <div class="flex items-center bg-white bg-opacity-50 rounded-full px-3 sm:px-4 py-2 w-full sm:w-auto">
-                                <div class="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse" style="animation-delay: 0.3s;"></div>
-                                <span class="font-medium text-xs sm:text-sm">Progress Tracking</span>
-                            </div>
-                            <div class="flex items-center bg-white bg-opacity-50 rounded-full px-3 sm:px-4 py-2 w-full sm:w-auto">
-                                <div class="w-2 h-2 bg-gold rounded-full mr-2 animate-pulse" style="animation-delay: 0.6s;"></div>
-                                <span class="font-medium text-xs sm:text-sm">Expert Support</span>
-                            </div>
-                            <div class="flex items-center bg-white bg-opacity-50 rounded-full px-3 sm:px-4 py-2 w-full sm:w-auto">
-                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" style="animation-delay: 0.9s;"></div>
-                                <span class="font-medium text-xs sm:text-sm">Verified Access</span>
+                        <!-- Form Completion Verification -->
+                        <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto">
+                            <div class="text-center">
+                                <h4 class="text-lg font-bold text-gray-800 mb-4 font-accent">After completing the form:</h4>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    Click the button below to confirm you've submitted the tracking form and unlock your PDF download.
+                                </p>
+                                
+                                <button onclick="verifyFormCompletion()" 
+                                        id="verifyFormBtn"
+                                        class="bg-gray-300 text-gray-500 font-bold py-3 px-8 rounded-xl text-base cursor-not-allowed transition-all duration-300 font-accent" disabled>
+                                    ✓ I've Completed the Form
+                                </button>
                             </div>
                         </div>
                     </div>
                     
-                    <button onclick="openGoogleForm()" 
-                            class="premium-button text-white font-bold py-4 sm:py-6 px-8 sm:px-12 rounded-xl sm:rounded-2xl text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 mb-4 sm:mb-6 inline-flex items-center w-full sm:w-auto justify-center">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        <span class="text-center">Download Free Guide & Complete Form</span>
-                    </button>
+                    <!-- Step 2: Download PDF (Hidden Initially) -->
+                    <div id="step2Container" class="hidden mb-6 sm:mb-8">
+                        <div class="verification-card rounded-xl sm:rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto border-2 border-green-200 relative overflow-hidden success-glow">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400"></div>
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-white to-transparent opacity-20"></div>
+                                    <span class="text-white font-bold text-2xl font-accent relative z-10">2</span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 font-display">Step 2: Download Your Personalized Guide</h3>
+                                <p class="text-gray-600 text-sm sm:text-base mb-6">
+                                    🎉 Thank you for completing the form! Your personalized fat-burning guide is now ready for download.
+                                </p>
+                            </div>
+                            
+                            <button onclick="downloadGuide()" 
+                                    class="w-full premium-button text-white font-bold py-4 sm:py-6 px-8 sm:px-12 rounded-xl sm:rounded-2xl text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <span class="text-center">Download Your Free Personalized Guide</span>
+                            </button>
+                        </div>
+                    </div>
                     
                     <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 max-w-lg mx-auto">
                         <div class="flex items-center justify-center mb-2 sm:mb-3">
                             <svg class="w-4 h-4 sm:w-5 sm:h-5 text-accent mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-700 font-semibold text-sm sm:text-base">100% Privacy Protected</span>
+                            <span class="text-gray-700 font-semibold text-sm sm:text-base font-accent">100% Privacy Protected</span>
                         </div>
                         <p class="text-gray-600 text-xs sm:text-sm px-2">
                             Your information is secure and will never be shared. We're here to support your transformation journey.
@@ -918,7 +1115,7 @@
         <!-- Navigation -->
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
             <button id="prevBtn" onclick="previousQuestion()" 
-                    class="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-white bg-white bg-opacity-20 rounded-xl sm:rounded-2xl hover:bg-opacity-30 transition-all duration-300 transform hover:scale-105 hidden group backdrop-blur-sm w-full sm:w-auto order-2 sm:order-1">
+                    class="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-white bg-white bg-opacity-20 rounded-xl sm:rounded-2xl hover:bg-opacity-30 transition-all duration-300 transform hover:scale-105 hidden group backdrop-blur-sm w-full sm:w-auto order-2 sm:order-1 font-accent">
                 <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
@@ -926,7 +1123,7 @@
             </button>
             
             <button id="nextBtn" onclick="nextQuestion()" 
-                    class="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-800 font-semibold rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 opacity-50 cursor-not-allowed group shadow-lg w-full sm:w-auto order-1 sm:order-2" disabled>
+                    class="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-800 font-semibold rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 opacity-50 cursor-not-allowed group shadow-lg w-full sm:w-auto order-1 sm:order-2 font-accent" disabled>
                 Continue Assessment
                 <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -939,6 +1136,13 @@
         let currentQuestion = 1;
         let answers = {};
         const totalQuestions = 4;
+        let mathAnswer = 0;
+        let isVerified = false;
+        let verificationAttempts = 0;
+        const maxAttempts = 3;
+        let selectedImages = [];
+        let correctImages = [];
+        let verificationMethod = null;
 
         function selectOption(category, value, element) {
             answers[category] = value;
@@ -949,14 +1153,8 @@
                 sibling.classList.remove('selected');
             }
             
-            // Add selected class to clicked element with animation
+            // Add selected class to clicked element
             element.classList.add('selected');
-            
-            // Add success feedback
-            element.style.transform = 'scale(1.02)';
-            setTimeout(() => {
-                element.style.transform = '';
-            }, 200);
             
             // Enable next button
             const nextBtn = document.getElementById('nextBtn');
@@ -976,7 +1174,7 @@
 
         function nextQuestion() {
             if (currentQuestion < totalQuestions) {
-                // Hide current question with animation
+                // Hide current question
                 const currentQuestionEl = document.getElementById(`question${currentQuestion}`);
                 currentQuestionEl.style.opacity = '0';
                 currentQuestionEl.style.transform = 'translateY(-20px)';
@@ -1014,7 +1212,6 @@
                     currentQuestion++;
                     updateNavigation();
                     updateProgress();
-                    generateMathChallenge();
                 }, 300);
             }
         }
@@ -1127,63 +1324,31 @@
             progressBar.style.width = progress + '%';
             progressText.textContent = Math.round(progress) + '% Complete';
             progressStep.textContent = `${Object.keys(answers).length}/${totalQuestions}`;
-            
-            // Celebration effect when complete
-            if (progress === 100) {
-                progressBar.style.background = 'linear-gradient(90deg, #b4300a, #25262a)';
-                setTimeout(() => {
-                    progressBar.style.background = 'linear-gradient(90deg, #b4300a, #7a150b)';
-                }, 1500);
-            }
         }
 
-        function openGoogleForm() {
-            // Log the assessment data
-            console.log('Assessment Data:', answers);
+        // Select Verification Method
+        function selectVerificationMethod(method) {
+            verificationMethod = method;
             
-            // Add button loading state
-            const button = event.target;
-            const originalText = button.innerHTML;
-            button.innerHTML = `
-                <svg class="w-5 h-5 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                </svg>
-                Opening Form...
-            `;
-            button.disabled = true;
+            // Hide method selection
+            const methodSelection = document.querySelector('.max-w-2xl.mx-auto.mb-8.sm\\:mb-10');
+            methodSelection.style.opacity = '0';
+            methodSelection.style.transform = 'translateY(-20px)';
             
-            // Open Google Form in new tab
             setTimeout(() => {
-                window.open('https://forms.gle/NrrMpaHxeKwEKDVSA', '_blank');
+                methodSelection.classList.add('hidden');
                 
-                // Reset button
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }, 1000);
-        }
-
-        // Initialize
-        updateNavigation();
-        updateProgress();
-
-        // Add keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && currentQuestion <= totalQuestions) {
-                const nextBtn = document.getElementById('nextBtn');
-                if (!nextBtn.disabled && !nextBtn.classList.contains('hidden')) {
-                    nextQuestion();
+                if (method === 'math') {
+                    document.getElementById('mathChallenge').classList.remove('hidden');
+                    document.getElementById('mathChallenge').classList.add('fade-in');
+                    generateMathChallenge();
+                } else if (method === 'image') {
+                    document.getElementById('imageChallenge').classList.remove('hidden');
+                    document.getElementById('imageChallenge').classList.add('fade-in');
+                    generateImageChallenge();
                 }
-            }
-        });
-
-        // Add touch feedback for mobile
-        document.addEventListener('touchstart', function() {}, {passive: true});
-
-        // Verification System Variables
-        let mathAnswer = 0;
-        let isVerified = false;
-        let verificationAttempts = 0;
-        const maxAttempts = 3;
+            }, 300);
+        }
 
         // Generate Math Challenge
         function generateMathChallenge() {
@@ -1217,11 +1382,191 @@
             document.getElementById('mathFeedback').classList.add('hidden');
         }
 
+        // Generate Image Challenge
+        function generateImageChallenge() {
+            const challenges = [
+                {
+                    target: 'Hearts ❤️',
+                    images: [
+                        { emoji: '❤️', correct: true },
+                        { emoji: '💙', correct: false },
+                        { emoji: '❤️', correct: true },
+                        { emoji: '💚', correct: false },
+                        { emoji: '🧡', correct: false },
+                        { emoji: '❤️', correct: true },
+                        { emoji: '💜', correct: false },
+                        { emoji: '💛', correct: false },
+                        { emoji: '🤍', correct: false }
+                    ]
+                },
+                {
+                    target: 'Fruits 🍎',
+                    images: [
+                        { emoji: '🍎', correct: true },
+                        { emoji: '🚗', correct: false },
+                        { emoji: '🍌', correct: true },
+                        { emoji: '🏠', correct: false },
+                        { emoji: '🍊', correct: true },
+                        { emoji: '⚽', correct: false },
+                        { emoji: '🍇', correct: true },
+                        { emoji: '📱', correct: false },
+                        { emoji: '🎸', correct: false }
+                    ]
+                },
+                {
+                    target: 'Animals 🐶',
+                    images: [
+                        { emoji: '🐶', correct: true },
+                        { emoji: '🚀', correct: false },
+                        { emoji: '🐱', correct: true },
+                        { emoji: '🌟', correct: false },
+                        { emoji: '🐸', correct: true },
+                        { emoji: '💎', correct: false },
+                        { emoji: '🦋', correct: true },
+                        { emoji: '🔥', correct: false },
+                        { emoji: '⭐', correct: false }
+                    ]
+                }
+            ];
+            
+            const challenge = challenges[Math.floor(Math.random() * challenges.length)];
+            document.getElementById('imageTarget').textContent = challenge.target;
+            
+            // Shuffle images
+            const shuffledImages = [...challenge.images].sort(() => Math.random() - 0.5);
+            
+            correctImages = [];
+            selectedImages = [];
+            
+            const imageGrid = document.getElementById('imageGrid');
+            imageGrid.innerHTML = '';
+            
+            shuffledImages.forEach((image, index) => {
+                if (image.correct) {
+                    correctImages.push(index);
+                }
+                
+                const imageDiv = document.createElement('div');
+                imageDiv.className = 'aspect-square bg-white border-2 border-gray-300 rounded-xl flex items-center justify-center text-4xl cursor-pointer transition-all duration-300 hover:border-green-400 hover:scale-105';
+                imageDiv.innerHTML = image.emoji;
+                imageDiv.onclick = () => toggleImageSelection(index, imageDiv);
+                
+                imageGrid.appendChild(imageDiv);
+            });
+            
+            document.getElementById('imageFeedback').classList.add('hidden');
+        }
+
+        // Toggle Image Selection
+        function toggleImageSelection(index, element) {
+            if (selectedImages.includes(index)) {
+                selectedImages = selectedImages.filter(i => i !== index);
+                element.classList.remove('border-green-500', 'bg-green-50', 'scale-105');
+                element.classList.add('border-gray-300');
+            } else {
+                selectedImages.push(index);
+                element.classList.remove('border-gray-300');
+                element.classList.add('border-green-500', 'bg-green-50', 'scale-105');
+            }
+        }
+
+        // Verify Images
+        function verifyImages() {
+            const feedback = document.getElementById('imageFeedback');
+            const verifyBtn = document.getElementById('verifyImageBtn');
+            
+            verificationAttempts++;
+            
+            // Check if selection matches correct images
+            const isCorrect = selectedImages.length === correctImages.length && 
+                             selectedImages.every(img => correctImages.includes(img)) &&
+                             correctImages.every(img => selectedImages.includes(img));
+            
+            if (isCorrect) {
+                // Correct selection
+                feedback.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="font-bold">Verification Successful!</span>
+                        </div>
+                        <p class="text-sm">Perfect! You've proven you're human. Redirecting to your results...</p>
+                    </div>
+                `;
+                feedback.classList.remove('hidden');
+                
+                verifyBtn.innerHTML = `
+                    <svg class="w-5 h-5 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Verified!
+                `;
+                verifyBtn.disabled = true;
+                verifyBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                
+                isVerified = true;
+                
+                // Proceed to final section after delay
+                setTimeout(() => {
+                    proceedToFinalSection();
+                }, 2000);
+                
+            } else {
+                // Wrong selection
+                const attemptsLeft = maxAttempts - verificationAttempts;
+                
+                if (attemptsLeft > 0) {
+                    feedback.innerHTML = `
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="font-bold">Incorrect Selection</span>
+                            </div>
+                            <p class="text-sm">Please try again. ${attemptsLeft} attempt${attemptsLeft > 1 ? 's' : ''} remaining.</p>
+                        </div>
+                    `;
+                    
+                    // Reset selections
+                    selectedImages = [];
+                    const imageElements = document.querySelectorAll('#imageGrid > div');
+                    imageElements.forEach(el => {
+                        el.classList.remove('border-green-500', 'bg-green-50', 'scale-105');
+                        el.classList.add('border-gray-300');
+                    });
+                    
+                } else {
+                    // Max attempts reached, generate new challenge
+                    feedback.innerHTML = `
+                        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-xl">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                                <span class="font-bold">New Challenge Generated</span>
+                            </div>
+                            <p class="text-sm">Let's try a different image challenge.</p>
+                        </div>
+                    `;
+                    
+                    verificationAttempts = 0;
+                    setTimeout(() => {
+                        generateImageChallenge();
+                    }, 1500);
+                }
+                
+                feedback.classList.remove('hidden');
+            }
+        }
+
         // Verify Math Answer
         function verifyMath() {
             const userAnswer = parseInt(document.getElementById('mathAnswer').value);
             const feedback = document.getElementById('mathFeedback');
-            const verifyBtn = document.getElementById('verifyBtn');
+            const verifyBtn = document.getElementById('verifyMathBtn');
             
             verificationAttempts++;
             
@@ -1306,204 +1651,6 @@
             }
         }
 
-        // Show Image Challenge (Alternative)
-        function showImageChallenge() {
-            const mathChallenge = document.querySelector('.max-w-md.mx-auto.mb-8');
-            mathChallenge.innerHTML = `
-                <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200">
-                    <div class="flex items-center justify-center mb-4 sm:mb-6">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-3">
-                            <span class="text-white font-bold text-sm sm:text-base">🖼️</span>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-800">Image Challenge</h3>
-                    </div>
-                    
-                    <div class="text-center mb-4 sm:mb-6">
-                        <p class="text-gray-600 text-sm mb-4">Click on all images that contain <strong>healthy food</strong></p>
-                        
-                        <div class="grid grid-cols-3 gap-2 mb-4">
-                            <div class="image-option aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, true)">
-                                <span class="text-2xl">🥗</span>
-                            </div>
-                            <div class="image-option aspect-square bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, false)">
-                                <span class="text-2xl">🍔</span>
-                            </div>
-                            <div class="image-option aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, true)">
-                                <span class="text-2xl">🍎</span>
-                            </div>
-                            <div class="image-option aspect-square bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, false)">
-                                <span class="text-2xl">🍕</span>
-                            </div>
-                            <div class="image-option aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, true)">
-                                <span class="text-2xl">🥕</span>
-                            </div>
-                            <div class="image-option aspect-square bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" onclick="selectImage(this, false)">
-                                <span class="text-2xl">🍰</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button onclick="verifyImageSelection()" 
-                            id="verifyImageBtn"
-                            class="w-full premium-button text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 opacity-50 cursor-not-allowed" disabled>
-                        Verify Selection
-                    </button>
-                    
-                    <div id="imageFeedback" class="mt-4 text-center hidden"></div>
-                </div>
-            `;
-        }
-
-        // Show Slider Challenge (Alternative)
-        function showSliderChallenge() {
-            const sliderValue = Math.floor(Math.random() * 50) + 25;
-            const mathChallenge = document.querySelector('.max-w-md.mx-auto.mb-8');
-            mathChallenge.innerHTML = `
-                <div class="glass-card rounded-xl sm:rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200">
-                    <div class="flex items-center justify-center mb-4 sm:mb-6">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
-                            <span class="text-white font-bold text-sm sm:text-base">🎚️</span>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-800">Slider Challenge</h3>
-                    </div>
-                    
-                    <div class="text-center mb-4 sm:mb-6">
-                        <p class="text-gray-600 text-sm mb-4">Move the slider to <strong>${sliderValue}</strong></p>
-                        
-                        <div class="mb-4">
-                            <input type="range" 
-                                   id="verificationSlider" 
-                                   min="0" 
-                                   max="100" 
-                                   value="0"
-                                   data-target="${sliderValue}"
-                                   class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-                                   oninput="updateSliderValue(this)">
-                            <div class="flex justify-between text-xs text-gray-500 mt-2">
-                                <span>0</span>
-                                <span id="sliderDisplay" class="font-bold text-lg text-gray-800">0</span>
-                                <span>100</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button onclick="verifySlider()" 
-                            id="verifySliderBtn"
-                            class="w-full premium-button text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105">
-                        Verify Position
-                    </button>
-                    
-                    <div id="sliderFeedback" class="mt-4 text-center hidden"></div>
-                </div>
-            `;
-        }
-
-        // Image Selection Functions
-        let selectedImages = [];
-        let correctImages = [];
-
-        function selectImage(element, isCorrect) {
-            const index = Array.from(element.parentElement.children).indexOf(element);
-            
-            if (element.classList.contains('selected')) {
-                element.classList.remove('selected', 'ring-4', 'ring-blue-500');
-                selectedImages = selectedImages.filter(i => i !== index);
-            } else {
-                element.classList.add('selected', 'ring-4', 'ring-blue-500');
-                selectedImages.push(index);
-            }
-            
-            if (isCorrect && !correctImages.includes(index)) {
-                correctImages.push(index);
-            }
-            
-            // Enable verify button if at least one image is selected
-            const verifyBtn = document.getElementById('verifyImageBtn');
-            if (selectedImages.length > 0) {
-                verifyBtn.disabled = false;
-                verifyBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            } else {
-                verifyBtn.disabled = true;
-                verifyBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            }
-        }
-
-        function verifyImageSelection() {
-            const feedback = document.getElementById('imageFeedback');
-            const correctSelections = selectedImages.filter(i => correctImages.includes(i));
-            const incorrectSelections = selectedImages.filter(i => !correctImages.includes(i));
-            
-            if (correctSelections.length === correctImages.length && incorrectSelections.length === 0) {
-                feedback.innerHTML = `
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
-                        <div class="flex items-center justify-center mb-2">
-                            <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-bold">Perfect! Verification Complete!</span>
-                        </div>
-                        <p class="text-sm">Great job identifying healthy foods!</p>
-                    </div>
-                `;
-                isVerified = true;
-                setTimeout(() => proceedToFinalSection(), 2000);
-            } else {
-                feedback.innerHTML = `
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
-                        <div class="flex items-center justify-center mb-2">
-                            <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-bold">Not quite right</span>
-                        </div>
-                        <p class="text-sm">Please select only the healthy food items.</p>
-                    </div>
-                `;
-            }
-            feedback.classList.remove('hidden');
-        }
-
-        // Slider Functions
-        function updateSliderValue(slider) {
-            document.getElementById('sliderDisplay').textContent = slider.value;
-        }
-
-        function verifySlider() {
-            const slider = document.getElementById('verificationSlider');
-            const target = parseInt(slider.dataset.target);
-            const value = parseInt(slider.value);
-            const feedback = document.getElementById('sliderFeedback');
-            
-            if (Math.abs(value - target) <= 2) {
-                feedback.innerHTML = `
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
-                        <div class="flex items-center justify-center mb-2">
-                            <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-bold">Excellent! Verification Complete!</span>
-                        </div>
-                        <p class="text-sm">Perfect precision! You're clearly human.</p>
-                    </div>
-                `;
-                isVerified = true;
-                setTimeout(() => proceedToFinalSection(), 2000);
-            } else {
-                feedback.innerHTML = `
-                    <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-xl">
-                        <div class="flex items-center justify-center mb-2">
-                            <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-bold">Close, but not quite</span>
-                        </div>
-                        <p class="text-sm">Try to get closer to ${target}. You're at ${value}.</p>
-                    </div>
-                `;
-            }
-            feedback.classList.remove('hidden');
-        }
-
         // Proceed to Final Section
         function proceedToFinalSection() {
             if (!isVerified) return;
@@ -1521,67 +1668,346 @@
                 finalSection.classList.remove('hidden');
                 finalSection.classList.add('fade-in');
                 
-                // Hide the header description and badges after verification
-                const headerDescription = document.querySelector('.text-lg.sm\\:text-xl.md\\:text-2xl.text-white.opacity-90');
-                const badgeContainer = document.querySelector('.flex.flex-col.sm\\:flex-row.flex-wrap.items-center.justify-center.mt-6');
-                
-                if (headerDescription) {
-                    headerDescription.style.opacity = '0';
-                    headerDescription.style.transform = 'translateY(-10px)';
-                    setTimeout(() => {
-                        headerDescription.style.display = 'none';
-                    }, 300);
-                }
-                
-                if (badgeContainer) {
-                    badgeContainer.style.opacity = '0';
-                    badgeContainer.style.transform = 'translateY(-10px)';
-                    setTimeout(() => {
-                        badgeContainer.style.display = 'none';
-                    }, 300);
-                }
-                
                 currentQuestion++;
                 updateNavigation();
                 updateProgress();
             }, 300);
         }
 
-        // Add shake animation CSS
-        const shakeStyle = document.createElement('style');
-        shakeStyle.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-5px); }
-                75% { transform: translateX(5px); }
+        function openGoogleForm() {
+            // Log the assessment data
+            console.log('Assessment Data:', answers);
+            
+            // Add button loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = `
+                <svg class="w-5 h-5 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                Opening Form...
+            `;
+            button.disabled = true;
+            
+            // Open Google Form in new tab
+            setTimeout(() => {
+                window.open('https://forms.gle/NrrMpaHxeKwEKDVSA', '_blank');
+                
+                // Reset button and enable verification
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                // Enable the verification button after form is opened
+                enableFormVerification();
+            }, 1000);
+        }
+
+        function enableFormVerification() {
+            const verifyBtn = document.getElementById('verifyFormBtn');
+            verifyBtn.disabled = false;
+            verifyBtn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            verifyBtn.classList.add('bg-blue-500', 'text-white', 'hover:bg-blue-600', 'cursor-pointer');
+            
+            // Add pulsing animation to draw attention
+            verifyBtn.classList.add('animate-pulse');
+        }
+
+        function verifyFormCompletion() {
+            const verifyBtn = document.getElementById('verifyFormBtn');
+            const originalText = verifyBtn.innerHTML;
+            
+            // Show loading state
+            verifyBtn.innerHTML = `
+                <svg class="w-4 h-4 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                Verifying...
+            `;
+            verifyBtn.disabled = true;
+            
+            // Simulate verification process
+            setTimeout(() => {
+                // Show success state
+                verifyBtn.innerHTML = `
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Form Completed! ✓
+                `;
+                verifyBtn.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                verifyBtn.classList.add('bg-green-500');
+                
+                // Enable PDF download after delay
+                setTimeout(() => {
+                    unlockPDFDownload();
+                }, 2000);
+                
+            }, 2000);
+        }
+
+        function unlockPDFDownload() {
+            // Hide Step 1 and show Step 2
+            const step1 = document.getElementById('step1Container');
+            const step2 = document.getElementById('step2Container');
+            
+            // Animate Step 1 out
+            step1.style.opacity = '0';
+            step1.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                step2.classList.add('fade-in');
+                
+                // Scroll to the download section
+                step2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Show celebration effect
+                showCelebrationEffect();
+            }, 300);
+        }
+
+        function showCelebrationEffect() {
+            // Create confetti-like effect
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createConfetti();
+                }, i * 100);
+            }
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'fixed w-3 h-3 rounded-full z-50 pointer-events-none';
+            confetti.style.background = ['#b4300a', '#7a150b', '#25262a', '#ffd700', '#ff6b6b'][Math.floor(Math.random() * 5)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
+            confetti.style.animation = 'confettiFall 3s linear forwards';
+            
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                document.body.removeChild(confetti);
+            }, 3000);
+        }
+
+        // Download PDF Guide Function
+        function downloadGuide() {
+            // Create personalized PDF content based on assessment answers
+            const { jsPDF } = window.jsPDF;
+            const doc = new jsPDF();
+            
+            // Add title
+            doc.setFontSize(24);
+            doc.setTextColor(180, 48, 10);
+            doc.text('Your Personalized Fat-Burning Guide', 20, 30);
+            
+            // Add subtitle
+            doc.setFontSize(16);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Science-Based Transformation Plan', 20, 45);
+            
+            // Add assessment results
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0);
+            let yPosition = 65;
+            
+            doc.text('Your Assessment Results:', 20, yPosition);
+            yPosition += 15;
+            
+            if (answers.age) {
+                doc.text(`• Age Range: ${answers.age}`, 25, yPosition);
+                yPosition += 10;
+            }
+            if (answers.weight) {
+                doc.text(`• Weight Status: ${answers.weight}`, 25, yPosition);
+                yPosition += 10;
+            }
+            if (answers.activity) {
+                doc.text(`• Activity Level: ${answers.activity}`, 25, yPosition);
+                yPosition += 10;
+            }
+            if (answers.goal) {
+                doc.text(`• Primary Goal: ${answers.goal}`, 25, yPosition);
+                yPosition += 15;
             }
             
-            .slider {
-                background: linear-gradient(to right, #b4300a 0%, #7a150b 100%);
+            // Add personalized recommendations
+            doc.setFontSize(16);
+            doc.setTextColor(180, 48, 10);
+            doc.text('Your Personalized Recommendations:', 20, yPosition);
+            yPosition += 15;
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            
+            // Generate recommendations based on answers
+            const recommendations = generateRecommendations();
+            recommendations.forEach(rec => {
+                const lines = doc.splitTextToSize(rec, 170);
+                lines.forEach(line => {
+                    if (yPosition > 270) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+                    doc.text(line, 25, yPosition);
+                    yPosition += 7;
+                });
+                yPosition += 5;
+            });
+            
+            // Add footer
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Generated by BurnTonic Premium Health Assessment', 20, 280);
+            doc.text('For more personalized guidance, visit our website', 20, 290);
+            
+            // Save the PDF
+            doc.save('Your-Personalized-Fat-Burning-Guide.pdf');
+            
+            // Show success message
+            showDownloadSuccess();
+        }
+
+        // Generate personalized recommendations based on assessment
+        function generateRecommendations() {
+            const recommendations = [];
+            
+            // Age-based recommendations
+            if (answers.age === '18-29') {
+                recommendations.push('• Take advantage of your peak metabolism with high-intensity interval training (HIIT) 3-4 times per week.');
+                recommendations.push('• Focus on building lean muscle mass through strength training to boost long-term fat burning.');
+            } else if (answers.age === '30-39') {
+                recommendations.push('• Combine strength training with cardio to maintain muscle mass and boost metabolism.');
+                recommendations.push('• Pay attention to stress management as cortisol levels can affect fat storage.');
+            } else if (answers.age === '40-49') {
+                recommendations.push('• Focus on hormone-supporting foods and supplements to maintain metabolic health.');
+                recommendations.push('• Incorporate resistance training to combat age-related muscle loss.');
+            } else if (answers.age === '50-59') {
+                recommendations.push('• Emphasize joint-friendly exercises like swimming, cycling, and yoga.');
+                recommendations.push('• Consider intermittent fasting to support metabolic flexibility.');
+            } else if (answers.age === '60+') {
+                recommendations.push('• Focus on gentle, consistent movement like walking and light strength training.');
+                recommendations.push('• Prioritize protein intake to maintain muscle mass and bone health.');
             }
             
-            .slider::-webkit-slider-thumb {
-                appearance: none;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                background: #ffffff;
-                border: 2px solid #b4300a;
-                cursor: pointer;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            // Weight-based recommendations
+            if (answers.weight === 'slightly-overweight') {
+                recommendations.push('• Create a moderate caloric deficit of 300-500 calories per day for steady fat loss.');
+                recommendations.push('• Focus on whole foods and eliminate processed snacks for quick results.');
+            } else if (answers.weight === 'moderately-overweight') {
+                recommendations.push('• Implement a structured meal plan with proper portion control.');
+                recommendations.push('• Add 30-45 minutes of daily activity to accelerate fat burning.');
+            } else if (answers.weight === 'significantly-overweight') {
+                recommendations.push('• Start with low-impact exercises and gradually increase intensity.');
+                recommendations.push('• Consider working with a nutritionist for a comprehensive meal plan.');
+            } else if (answers.weight === 'major-weight-loss') {
+                recommendations.push('• Focus on sustainable lifestyle changes rather than quick fixes.');
+                recommendations.push('• Build a strong support system and consider professional guidance.');
             }
             
-            .slider::-moz-range-thumb {
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                background: #ffffff;
-                border: 2px solid #b4300a;
-                cursor: pointer;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            // Activity-based recommendations
+            if (answers.activity === 'sedentary') {
+                recommendations.push('• Start with 10-15 minutes of daily walking and gradually increase duration.');
+                recommendations.push('• Set hourly reminders to stand and move throughout the day.');
+            } else if (answers.activity === 'lightly-active') {
+                recommendations.push('• Increase your current activity by adding 2 more workout days per week.');
+                recommendations.push('• Try new activities like dancing, hiking, or sports to stay motivated.');
+            } else if (answers.activity === 'moderately-active') {
+                recommendations.push('• Optimize your current routine by adding high-intensity intervals.');
+                recommendations.push('• Focus on progressive overload in strength training for better results.');
+            } else if (answers.activity === 'very-active') {
+                recommendations.push('• Fine-tune your nutrition timing around workouts for maximum fat burning.');
+                recommendations.push('• Consider periodization in your training to prevent plateaus.');
             }
-        `;
-        document.head.appendChild(shakeStyle);
+            
+            // Goal-based recommendations
+            if (answers.goal === 'lose-weight-fast') {
+                recommendations.push('• Combine intermittent fasting with high-intensity workouts for rapid results.');
+                recommendations.push('• Track your food intake meticulously and maintain a consistent sleep schedule.');
+            } else if (answers.goal === 'sustainable-loss') {
+                recommendations.push('• Aim for 1-2 pounds of fat loss per week through balanced nutrition and exercise.');
+                recommendations.push('• Build healthy habits gradually to ensure long-term success.');
+            } else if (answers.goal === 'boost-energy') {
+                recommendations.push('• Focus on nutrient-dense foods and avoid energy-draining processed foods.');
+                recommendations.push('• Incorporate morning exercise to naturally boost energy levels throughout the day.');
+            } else if (answers.goal === 'improve-health') {
+                recommendations.push('• Prioritize whole foods, adequate sleep, and stress management for overall wellness.');
+                recommendations.push('• Regular health check-ups and monitoring key biomarkers for progress tracking.');
+            }
+            
+            return recommendations;
+        }
+
+        function showDownloadSuccess() {
+            const successMessage = document.createElement('div');
+            successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-xl shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+            successMessage.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                        <div class="font-bold font-accent">Download Complete!</div>
+                        <div class="text-sm opacity-90">Your guide is ready to use</div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(successMessage);
+            
+            // Animate in
+            setTimeout(() => {
+                successMessage.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                successMessage.style.transform = 'translateX(full)';
+                setTimeout(() => {
+                    document.body.removeChild(successMessage);
+                }, 300);
+            }, 4000);
+        }
+
+        // Initialize
+        updateNavigation();
+        updateProgress();
+
+        // Add magnetic hover effects to buttons
+        function addMagneticEffect() {
+            const buttons = document.querySelectorAll('.premium-button, .option-card');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mousemove', (e) => {
+                    const rect = button.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    const moveX = x * 0.1;
+                    const moveY = y * 0.1;
+                    
+                    button.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
+                });
+                
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = '';
+                });
+            });
+        }
+
+        // Initialize magnetic effects
+        setTimeout(addMagneticEffect, 1000);
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && currentQuestion <= totalQuestions) {
+                const nextBtn = document.getElementById('nextBtn');
+                if (!nextBtn.disabled && !nextBtn.classList.contains('hidden')) {
+                    nextQuestion();
+                }
+            }
+        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9730bb2a619d1b69',t:'MTc1NTg0ODUyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97403eaad414c8d9',t:'MTc1NjAxMTE5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
