@@ -161,7 +161,7 @@
                 </div>
                 
                 <blockquote class="text-lg text-gray-700 italic mb-6 leading-relaxed">
-                    I lost 12 pounds in just 3 weeks! The meal plans are so easy to follow and I actually look forward to the workouts now.
+                    "I lost 12 pounds in just 3 weeks! The meal plans are so easy to follow and I actually look forward to the workouts now."
                 </blockquote>
                 
                 <div class="mb-6">
@@ -710,7 +710,7 @@
                         </div>
                     </div>
                     <p class="testimonial-text text-gray-600">
-                        I lost 12 pounds in the first month! The meal plans are so easy to follow and the workouts actually fit into my busy schedule.
+                        "I lost 12 pounds in the first month! The meal plans are so easy to follow and the workouts actually fit into my busy schedule."
                     </p>
                 </div>
                 
@@ -725,7 +725,7 @@
                         </div>
                     </div>
                     <p class="testimonial-text text-gray-600">
-                        Finally, a program that doesn't require hours at the gym. I'm seeing real results with just 10 minutes a day!
+                        "Finally, a program that doesn't require hours at the gym. I'm seeing real results with just 10 minutes a day!"
                     </p>
                 </div>
                 
@@ -740,7 +740,7 @@
                         </div>
                     </div>
                     <p class="testimonial-text text-gray-600">
-                        The metabolism tips alone changed everything for me. I have more energy than I've had in years!
+                        "The metabolism tips alone changed everything for me. I have more energy than I've had in years!"
                     </p>
                 </div>
             </div>
@@ -827,9 +827,15 @@
                     </div>
                 </div>
                 
-                <button onclick="hideThankYou()" class="text-gray-500 hover:text-gray-700 underline">
-                    Return to main page
-                </button>
+                <div class="space-y-4">
+                    <button onclick="openFormNow()" class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-lightRed transition-colors">
+                        Open Form Now
+                    </button>
+                    <br>
+                    <button onclick="hideThankYou()" class="text-gray-500 hover:text-gray-700 underline">
+                        Return to main page
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -882,9 +888,10 @@
                     <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
                     <a href="#" class="hover:text-white transition-colors">Contact</a>
                 </div>
-                <p class="text-gray-500 text-sm">
-                    © 2024 BurnTonic. All rights reserved.
-                </p>
+                <div class="text-gray-500 text-sm space-y-2">
+                    <p class="font-medium text-gray-400">Founded by Omar Marufi & Haschem Bostani</p>
+                    <p>© 2024 BurnTonic. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -1228,10 +1235,26 @@
                 
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    // Open Google Form in new tab
-                    window.open('https://docs.google.com/forms/d/e/1FAIpQLSduIDAzZLUHq2H6ohWCjhN9IJavv9C_bogU31F9wco7e8hk8g/viewform?usp=header', '_blank');
-                    // Hide thank you page
-                    hideThankYou();
+                    // Try multiple methods to open the form
+                    const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSduIDAzZLUHq2H6ohWCjhN9IJavv9C_bogU31F9wco7e8hk8g/viewform';
+                    
+                    // Method 1: Try window.open
+                    const newWindow = window.open(formUrl, '_blank', 'noopener,noreferrer');
+                    
+                    // Method 2: If popup blocked, redirect current window
+                    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                        // Show user a manual link as backup
+                        countdownElement.innerHTML = '<a href="' + formUrl + '" target="_blank" class="text-primary underline hover:text-red-600">Click here to open form</a>';
+                        countdownTextElement.innerHTML = 'Click the link above if form didn\'t open automatically';
+                        
+                        // Also try direct redirect after 2 seconds
+                        setTimeout(() => {
+                            window.location.href = formUrl;
+                        }, 2000);
+                    } else {
+                        // Hide thank you page if popup opened successfully
+                        setTimeout(() => hideThankYou(), 1000);
+                    }
                 }
             }, 1000);
         }
@@ -1239,6 +1262,26 @@
         function hideThankYou() {
             document.getElementById('thank-you-page').classList.add('hidden');
             document.body.style.overflow = 'auto';
+        }
+
+        function openFormNow() {
+            const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSduIDAzZLUHq2H6ohWCjhN9IJavv9C_bogU31F9wco7e8hk8g/viewform';
+            
+            // Create a temporary link and click it (more reliable than window.open)
+            const link = document.createElement('a');
+            link.href = formUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Also provide fallback
+            setTimeout(() => {
+                if (confirm('Did the form open in a new tab? If not, click OK to try again.')) {
+                    window.location.href = formUrl;
+                }
+            }, 2000);
         }
 
         // Smooth scrolling for all anchor links
@@ -1275,5 +1318,5 @@
             observer.observe(section);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97591a19341991c4',t:'MTc1NjI3MTg0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97ae7bdae211918a',t:'MTc1NzE2NzEzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
