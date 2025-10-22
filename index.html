@@ -3,769 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BurnTonic - Elite Personalized Fat-Burn System</title>
+    <title>BurnTonic - Revolutionary Weight Loss System | Transform Your Body in 90 Days</title>
+    <meta name="description" content="Join 150,000+ success stories with BurnTonic's scientifically-proven weight loss system. Get your personalized consultation and start your transformation today.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0f172a',
-                        secondary: '#1e293b',
-                        accent: '#f59e0b',
-                        gold: '#fbbf24',
-                        platinum: '#e5e7eb',
-                        diamond: '#f8fafc'
-                    },
-                    fontFamily: {
-                        'display': ['Inter', 'system-ui', 'sans-serif'],
-                        'body': ['Inter', 'system-ui', 'sans-serif']
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'shimmer': 'shimmer 2s linear infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        body {
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
         
         * {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #94a3b8 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 25s ease infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .morphism-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .professional-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        
+        .professional-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+        
+        .floating-elements {
+            animation: float 8s ease-in-out infinite;
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
-            to { box-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 0 40px rgba(245, 158, 11, 0.3); }
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .premium-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .gold-gradient {
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%);
-        }
-        
-        .shimmer-effect {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 2s infinite;
-        }
-        
-        .hero-bg {
-            background: radial-gradient(ellipse at top, rgba(15, 23, 42, 0.1) 0%, transparent 50%),
-                        linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(15, 23, 42, 0.05) 100%);
-        }
-        
-        .premium-card {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 
-                        0 0 0 1px rgba(255, 255, 255, 0.8),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        }
-        
-        .luxury-button {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.3),
-                        0 0 0 1px rgba(245, 158, 11, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .luxury-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.4),
-                        0 0 0 1px rgba(245, 158, 11, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-        
-        .testimonial-luxury {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(245, 158, 11, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .floating-element {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .glow-effect {
-            animation: glow 2s ease-in-out infinite alternate;
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(0.5deg); }
+            66% { transform: translateY(-8px) rotate(-0.5deg); }
         }
         
         .text-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #f59e0b 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .gold-text {
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .pulse-glow {
+            animation: pulseGlow 3s infinite;
         }
         
-        .section-divider {
-            background: linear-gradient(90deg, transparent 0%, #f59e0b 50%, transparent 100%);
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); }
         }
         
-        .premium-input {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            border: 2px solid rgba(245, 158, 11, 0.1);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06),
-                        0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .slide-up {
+            animation: slideUp 1s ease-out;
         }
         
-        .premium-input:focus {
-            border-color: #f59e0b;
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1),
-                        inset 0 2px 4px rgba(0, 0, 0, 0.06);
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .stagger-animation {
+            animation: staggerIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(25px);
+        }
+        
+        @keyframes staggerIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .premium-button {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .premium-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .premium-button:hover::before {
+            left: 100%;
+        }
+        
+        .premium-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
         }
         
         .stats-counter {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
-            backdrop-filter: blur(20px);
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
         }
         
-        .feature-icon {
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
-        }
-        
-        .luxury-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(245, 158, 11, 0.1);
-        }
-        
-        .hero-stats {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .assessment-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(245, 158, 11, 0.1);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-        
-        .results-panel {
-            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .results-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .metric-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .interactive-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .metric-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        .interactive-hover:hover {
+            transform: scale(1.02) translateY(-2px);
         }
         
-        .footer-luxury {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            position: relative;
+        .success-checkmark {
+            animation: checkmarkDraw 1s ease-in-out;
         }
         
-        .footer-luxury::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, #f59e0b 50%, transparent 100%);
+        @keyframes checkmarkDraw {
+            0% { stroke-dasharray: 0 100; }
+            100% { stroke-dasharray: 100 0; }
         }
         
-        .notification-luxury {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .popup-luxury {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(245, 158, 11, 0.1);
-        }
-        
-        .brand-logo {
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero-title {
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 1.1;
-        }
-        
-        .section-title {
+        .professional-heading {
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
+            letter-spacing: -0.025em;
         }
         
-        .luxury-select {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            border: 2px solid rgba(245, 158, 11, 0.1);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+        .trust-badge {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1px solid #cbd5e1;
+        }
+        
+        .accent-button {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+        
+        .accent-button:hover {
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
         }
         
         .progress-bar {
-            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%);
-            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+            width: 0%;
+            transition: width 2.5s ease-in-out;
         }
         
-        .social-icon {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
         
-        .social-icon:hover {
-            background: #f59e0b;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        @media (max-width: 640px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
-<body class="bg-white overflow-x-hidden">
-    <!-- Premium Navigation -->
-    <nav class="luxury-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 sm:h-20">
-                <div class="flex items-center space-x-2 sm:space-x-4">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-accent to-gold flex items-center justify-center shadow-lg">
-                        <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+<body class="antialiased overflow-x-hidden bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 morphism-card">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center floating-elements">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                         </svg>
                     </div>
-                    <div class="brand-logo text-xl sm:text-3xl font-display">BurnTonic</div>
-                    <div class="hidden xs:block px-2 py-1 bg-gradient-to-r from-accent/10 to-gold/10 rounded-full text-xs font-bold text-accent border border-accent/20">
-                        ELITE
-                    </div>
+                    <span class="text-lg sm:text-xl font-bold text-white">BurnTonic</span>
                 </div>
-                <div class="flex items-center space-x-2 sm:space-x-6">
-                    <div class="hidden lg:flex items-center space-x-2 text-sm text-gray-600">
-                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span class="font-medium"><span class="font-bold text-accent">2,847+</span> transformations</span>
-                    </div>
-                    <button onclick="scrollToForm()" class="luxury-button text-white px-3 py-2 sm:px-8 sm:py-3 rounded-xl sm:rounded-2xl font-semibold text-xs sm:text-sm">
-                        <span class="hidden sm:inline">Start Elite Assessment</span>
-                        <span class="sm:hidden">Start</span>
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#results" class="text-white hover:text-orange-200 font-medium transition text-sm lg:text-base">Success Stories</a>
+                    <a href="#science" class="text-white hover:text-orange-200 font-medium transition text-sm lg:text-base">Clinical Research</a>
+                    <a href="#testimonials" class="text-white hover:text-orange-200 font-medium transition text-sm lg:text-base">Reviews</a>
+                    <button class="accent-button text-white px-4 lg:px-6 py-2 rounded-lg hover:shadow-lg transition font-semibold text-sm lg:text-base">
+                        Get Started
+                    </button>
+                </div>
+                <button class="md:hidden text-white p-2" id="mobileMenuBtn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-white border-opacity-20">
+                <div class="flex flex-col space-y-3 pt-4">
+                    <a href="#results" class="text-white hover:text-orange-200 font-medium transition py-2">Success Stories</a>
+                    <a href="#science" class="text-white hover:text-orange-200 font-medium transition py-2">Clinical Research</a>
+                    <a href="#testimonials" class="text-white hover:text-orange-200 font-medium transition py-2">Reviews</a>
+                    <button class="accent-button text-white px-6 py-3 rounded-lg hover:shadow-lg transition font-semibold mt-2 w-full">
+                        Get Started
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section - Ultra Premium -->
-    <section class="hero-bg pt-20 pb-12 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-32 relative overflow-hidden">
-        <!-- Floating Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="floating-element absolute top-10 right-5 sm:top-20 sm:right-20 w-16 h-16 sm:w-32 sm:h-32 bg-gradient-to-br from-accent/10 to-gold/10 rounded-full blur-xl"></div>
-            <div class="floating-element absolute bottom-10 left-5 sm:bottom-20 sm:left-20 w-20 h-20 sm:w-40 sm:h-40 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-2xl" style="animation-delay: 2s;"></div>
-            <div class="floating-element absolute top-1/2 left-1/2 w-12 h-12 sm:w-24 sm:h-24 bg-gradient-to-br from-gold/10 to-accent/10 rounded-full blur-xl" style="animation-delay: 4s;"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-                <div class="text-center lg:text-left">
-                    <!-- Premium Badge -->
-                    <div class="inline-flex items-center bg-gradient-to-r from-accent/10 via-gold/10 to-accent/10 text-accent px-3 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold mb-6 sm:mb-8 border border-accent/20 shadow-lg backdrop-blur-sm">
-                        <div class="w-2 h-2 bg-accent rounded-full mr-2 sm:mr-3 animate-pulse"></div>
-                        🏆 #1 Elite Fat-Burn System
+    <!-- Hero Section -->
+    <section class="min-h-full hero-gradient text-white pt-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20 relative z-20">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <!-- Left Content -->
+                <div class="lg:w-1/2 mb-12 lg:mb-0 slide-up text-center lg:text-left">
+                    <!-- Trust Badge -->
+                    <div class="inline-flex items-center trust-badge text-slate-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold text-xs sm:text-sm mb-6 sm:mb-8 pulse-glow">
+                        <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="hidden sm:inline">Clinically Proven • 4.9★ Rating • 150,000+ Success Stories</span>
+                        <span class="sm:hidden">Clinically Proven • 4.9★ • 150K+ Success</span>
                     </div>
                     
-                    <h1 class="hero-title text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-display text-primary mb-6 sm:mb-8">
-                        Transform Your Body with
-                        <span class="text-gradient block mt-1 sm:mt-2">Elite Precision</span>
+                    <h1 class="professional-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 sm:mb-8 leading-tight">
+                        BurnTonic
+                        <span class="block text-orange-200">Revolutionary</span>
+                        <span class="block text-gradient">
+                            Weight Loss System
+                        </span>
                     </h1>
                     
-                    <p class="text-base sm:text-xl lg:text-2xl text-gray-600 mb-8 sm:mb-12 leading-relaxed font-light px-2 sm:px-0">
-                        Unlock your personalized fat-burn blueprint with our AI-powered assessment. 
-                        <span class="font-semibold text-accent">Join 2,847+ elite transformations.</span>
+                    <p class="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-10 opacity-90 leading-relaxed font-medium text-slate-200">
+                        Transform your body in 90 days with our scientifically-proven system. Join 150,000+ success stories who lost 30+ pounds and kept it off.
                     </p>
                     
-                    <!-- Hero CTA -->
-                    <div class="flex flex-col gap-4 sm:gap-6 mb-8 sm:mb-12 px-2 sm:px-0">
-                        <button onclick="scrollToForm()" class="luxury-button text-white px-6 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-base sm:text-lg font-semibold inline-flex items-center justify-center group w-full sm:w-auto">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            Start Elite Assessment
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                            </svg>
-                        </button>
-                        
-                        <button class="glass-effect text-primary px-6 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-base sm:text-lg font-semibold inline-flex items-center justify-center hover:bg-white/20 transition-all duration-300 w-full sm:w-auto">
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            View Success Stories
-                        </button>
+                    <!-- Key Benefits -->
+                    <div class="space-y-4 mb-12">
+                        <div class="flex items-center stagger-animation" style="animation-delay: 0.1s;">
+                            <div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-lg font-medium text-slate-100">Lose 30+ pounds in 90 days guaranteed</span>
+                        </div>
+                        <div class="flex items-center stagger-animation" style="animation-delay: 0.2s;">
+                            <div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-lg font-medium text-slate-100">No restrictive diets or extreme workouts</span>
+                        </div>
+                        <div class="flex items-center stagger-animation" style="animation-delay: 0.3s;">
+                            <div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-lg font-medium text-slate-100">Personalized plan based on your metabolism</span>
+                        </div>
+                        <div class="flex items-center stagger-animation" style="animation-delay: 0.4s;">
+                            <div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-lg font-medium text-slate-100">24/7 support from certified specialists</span>
+                        </div>
                     </div>
                     
-                    <!-- Trust Indicators -->
-                    <div class="hero-stats rounded-2xl sm:rounded-3xl p-4 sm:p-6 inline-block">
-                        <div class="flex items-center space-x-4 sm:space-x-8">
-                            <div class="text-center">
-                                <div class="text-lg sm:text-2xl font-bold text-primary">4.9★</div>
-                                <div class="text-xs sm:text-sm text-gray-600">Rating</div>
-                            </div>
-                            <div class="w-px h-8 sm:h-12 bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
-                            <div class="text-center">
-                                <div class="text-lg sm:text-2xl font-bold text-primary">2,847+</div>
-                                <div class="text-xs sm:text-sm text-gray-600">Transformations</div>
-                            </div>
-                            <div class="w-px h-8 sm:h-12 bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
-                            <div class="text-center">
-                                <div class="text-lg sm:text-2xl font-bold text-primary">60s</div>
-                                <div class="text-xs sm:text-sm text-gray-600">Assessment</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Hero Visual -->
-                <div class="relative mt-8 lg:mt-0">
-                    <div class="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center relative overflow-hidden">
-                        <!-- Shimmer Effect -->
-                        <div class="absolute inset-0 shimmer-effect opacity-30"></div>
-                        
-                        <div class="relative z-10">
-                            <div class="text-4xl sm:text-8xl mb-4 sm:mb-6 floating-element">⚡</div>
-                            <h3 class="text-lg sm:text-2xl font-bold text-primary mb-2 sm:mb-4">Elite Assessment</h3>
-                            <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">AI-powered precision analysis</p>
-                            
-                            <!-- Mini Stats -->
-                            <div class="grid grid-cols-3 gap-2 sm:gap-4 text-center">
-                                <div class="bg-gradient-to-br from-accent/10 to-gold/10 rounded-xl sm:rounded-2xl p-2 sm:p-4">
-                                    <div class="text-lg sm:text-2xl mb-1 sm:mb-2">🎯</div>
-                                    <div class="text-xs sm:text-sm font-semibold text-primary">Precision</div>
-                                </div>
-                                <div class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl sm:rounded-2xl p-2 sm:p-4">
-                                    <div class="text-lg sm:text-2xl mb-1 sm:mb-2">🧠</div>
-                                    <div class="text-xs sm:text-sm font-semibold text-primary">AI-Powered</div>
-                                </div>
-                                <div class="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl sm:rounded-2xl p-2 sm:p-4">
-                                    <div class="text-lg sm:text-2xl mb-1 sm:mb-2">📈</div>
-                                    <div class="text-xs sm:text-sm font-semibold text-primary">Results</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Elite Features Section -->
-    <section class="py-12 sm:py-24 bg-gradient-to-br from-gray-50 to-accent/5 relative">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 sm:mb-20">
-                <div class="inline-flex items-center bg-gradient-to-r from-accent/10 to-gold/10 text-accent px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold mb-6 sm:mb-8 border border-accent/20">
-                    <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                    </svg>
-                    Elite Features
-                </div>
-                <h2 class="section-title text-2xl sm:text-4xl lg:text-6xl text-primary mb-4 sm:mb-6">
-                    What Makes Us <span class="gold-text">Elite</span>
-                </h2>
-                <div class="section-divider h-1 w-20 sm:w-32 mx-auto mb-6 sm:mb-8"></div>
-                <p class="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-                    Experience the pinnacle of personalized health optimization with our cutting-edge system
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
-                <div class="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-center group hover:scale-105 transition-all duration-500">
-                    <div class="feature-icon w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 glow-effect">
-                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-primary mb-3 sm:mb-4">7-Day Elite Reset</h3>
-                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Scientifically crafted meal plans that ignite your metabolism naturally</p>
-                </div>
-                
-                <div class="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-center group hover:scale-105 transition-all duration-500">
-                    <div class="feature-icon w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 glow-effect">
-                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-primary mb-3 sm:mb-4">10-Min Power Workouts</h3>
-                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed">High-intensity routines designed for maximum fat burn in minimal time</p>
-                </div>
-                
-                <div class="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-center group hover:scale-105 transition-all duration-500">
-                    <div class="feature-icon w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 glow-effect">
-                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-primary mb-3 sm:mb-4">AI Metabolism Boost</h3>
-                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Advanced algorithms optimize your metabolic rate for accelerated results</p>
-                </div>
-                
-                <div class="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-center group hover:scale-105 transition-all duration-500">
-                    <div class="feature-icon w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 glow-effect">
-                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-primary mb-3 sm:mb-4">Lifestyle Integration</h3>
-                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Seamlessly fits into your busy schedule without compromising results</p>
-                </div>
-            </div>
-            
-            <!-- Live Stats -->
-            <div class="mt-8 sm:mt-16 text-center">
-                <div class="stats-counter rounded-2xl sm:rounded-3xl p-4 sm:p-8 inline-block">
-                    <div class="flex items-center space-x-6 sm:space-x-12 text-white">
+                    <!-- Live Stats -->
+                    <div class="grid grid-cols-3 gap-8 mb-12">
                         <div class="text-center">
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-green-400 rounded-full animate-pulse mx-auto mb-1 sm:mb-2"></div>
-                            <div class="text-lg sm:text-2xl font-bold"><span id="downloads-today">127</span></div>
-                            <div class="text-xs sm:text-sm opacity-80">Downloads Today</div>
+                            <div class="text-4xl font-black stats-counter text-indigo-300" data-target="150">0</div>
+                            <div class="text-sm opacity-80 font-medium text-slate-300">K+ Success Stories</div>
                         </div>
                         <div class="text-center">
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-blue-400 rounded-full animate-pulse mx-auto mb-1 sm:mb-2"></div>
-                            <div class="text-lg sm:text-2xl font-bold"><span id="people-online">23</span></div>
-                            <div class="text-xs sm:text-sm opacity-80">Active Now</div>
+                            <div class="text-4xl font-black stats-counter text-indigo-300" data-target="96">0</div>
+                            <div class="text-sm opacity-80 font-medium text-slate-300">% Success Rate</div>
                         </div>
                         <div class="text-center">
-                            <div class="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full animate-pulse mx-auto mb-1 sm:mb-2"></div>
-                            <div class="text-lg sm:text-2xl font-bold">47</div>
-                            <div class="text-xs sm:text-sm opacity-80">Spots Left</div>
+                            <div class="text-4xl font-black stats-counter text-indigo-300" data-target="30">0</div>
+                            <div class="text-sm opacity-80 font-medium text-slate-300">+ Pounds Lost Avg</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Elite Assessment Section -->
-    <section class="py-12 sm:py-24 bg-gradient-to-br from-primary via-secondary to-primary relative overflow-hidden">
-        <!-- Premium Background Effects -->
-        <div class="absolute inset-0">
-            <div class="absolute top-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-accent/10 to-gold/10 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-40 h-40 sm:w-80 sm:h-80 bg-gradient-to-br from-gold/5 to-accent/5 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
-            <!-- Premium Header -->
-            <div class="text-center mb-8 sm:mb-16">
-                <div class="inline-flex items-center bg-gradient-to-r from-accent/20 to-gold/20 text-accent px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold mb-6 sm:mb-8 border border-accent/30 backdrop-blur-sm">
-                    <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                    </svg>
-                    AI-Powered Assessment
-                </div>
-                <h2 class="section-title text-2xl sm:text-4xl lg:text-6xl text-white mb-4 sm:mb-6">
-                    Your Elite <span class="gold-text">Health Intelligence</span>
-                </h2>
-                <p class="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-                    Advanced biometric analysis powered by cutting-edge AI algorithms
-                </p>
-            </div>
-
-            <!-- Ultra-Premium Assessment Interface -->
-            <div class="assessment-card rounded-2xl sm:rounded-3xl overflow-hidden">
-                <div class="grid lg:grid-cols-5">
-                    <!-- Assessment Form - 3 columns -->
-                    <div class="lg:col-span-3 p-4 sm:p-8 lg:p-12">
-                        <!-- Elite Header -->
-                        <div class="flex items-center mb-6 sm:mb-10">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent via-gold to-accent rounded-2xl sm:rounded-3xl flex items-center justify-center mr-3 sm:mr-6 shadow-2xl glow-effect">
+                
+                <!-- Right Form -->
+                <div class="lg:w-1/2 lg:pl-8 xl:pl-16 w-full">
+                    <div class="professional-card p-6 sm:p-8 lg:p-10 max-w-lg mx-auto">
+                        <div class="text-center mb-6 sm:mb-8">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 interactive-hover">
                                 <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
+                            <h2 class="professional-heading text-2xl sm:text-3xl font-black text-gray-800 mb-3 sm:mb-4">
+                                Get Your FREE
+                                <span class="text-gradient block">Weight Loss Consultation</span>
+                            </h2>
+                            <p class="text-gray-600 text-base sm:text-lg font-medium">
+                                Discover your personalized path to transformation
+                            </p>
+                            
+                            <!-- Social Proof -->
+                            <div class="flex items-center justify-center space-x-2 mt-4">
+                                <div class="flex -space-x-2">
+                                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full border-2 border-white"></div>
+                                    <div class="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full border-2 border-white"></div>
+                                    <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-violet-500 rounded-full border-2 border-white"></div>
+                                    <div class="w-8 h-8 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full border-2 border-white"></div>
+                                </div>
+                                <span class="text-sm text-gray-600 font-medium">Join 150K+ transformations</span>
+                            </div>
+                        </div>
+                        
+                        <form id="formId" class="space-y-6">
                             <div>
-                                <h3 class="section-title text-xl sm:text-3xl text-primary mb-1 sm:mb-2">Elite Assessment</h3>
-                                <p class="text-gray-600 text-sm sm:text-lg">Clinical-grade precision • 60 seconds</p>
+                                <label for="fullName" class="block text-sm font-semibold text-gray-700 mb-3">Full Name</label>
+                                <input type="text" id="fullName" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-base font-medium text-gray-900 bg-white"
+                                       placeholder="Enter your full name">
                             </div>
-                        </div>
-                        
-                        <!-- Progress Indicator -->
-                        <div class="mb-6 sm:mb-10">
-                            <div class="flex items-center justify-between mb-2 sm:mb-3">
-                                <span class="text-xs sm:text-sm font-bold text-gray-700">Assessment Progress</span>
-                                <span class="text-xs sm:text-sm font-bold text-accent" id="progress-text">0% Complete</span>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-3">Email Address</label>
+                                <input type="email" id="email" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-base font-medium text-gray-900 bg-white"
+                                       placeholder="Enter your email address">
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2 sm:h-3 shadow-inner">
-                                <div id="form-progress" class="progress-bar h-2 sm:h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-6 sm:space-y-8">
-                            <!-- Height Input -->
-                            <div class="space-y-3 sm:space-y-4">
-                                <label class="block text-base sm:text-lg font-bold text-primary mb-3 sm:mb-4 flex items-center">
-                                    <div class="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center mr-2 sm:mr-3">
-                                        <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path>
-                                        </svg>
-                                    </div>
-                                    Height
-                                </label>
-                                <div class="grid grid-cols-2 gap-3 sm:gap-4">
-                                    <div class="relative">
-                                        <input type="number" id="height-ft" placeholder="5" min="3" max="8" 
-                                               class="premium-input w-full px-4 py-4 sm:px-6 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold text-primary"
-                                               onchange="updateProgress()">
-                                        <span class="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 text-gray-500 font-bold text-sm sm:text-lg">ft</span>
-                                    </div>
-                                    <div class="relative">
-                                        <input type="number" id="height-in" placeholder="8" min="0" max="11" 
-                                               class="premium-input w-full px-4 py-4 sm:px-6 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold text-primary"
-                                               onchange="updateProgress()">
-                                        <span class="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 text-gray-500 font-bold text-sm sm:text-lg">in</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Weight Input -->
-                            <div class="space-y-3 sm:space-y-4">
-                                <label class="block text-base sm:text-lg font-bold text-primary mb-3 sm:mb-4 flex items-center">
-                                    <div class="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg sm:rounded-xl flex items-center justify-center mr-2 sm:mr-3">
-                                        <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
-                                        </svg>
-                                    </div>
-                                    Weight
-                                </label>
-                                <div class="relative">
-                                    <input type="number" id="weight" placeholder="150" min="50" max="500" 
-                                           class="premium-input w-full px-4 py-4 sm:px-6 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold text-primary"
-                                           onchange="updateProgress()">
-                                    <span class="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 text-gray-500 font-bold text-sm sm:text-lg">lbs</span>
-                                </div>
-                            </div>
-
-                            <!-- Age Input -->
-                            <div class="space-y-3 sm:space-y-4">
-                                <label class="block text-base sm:text-lg font-bold text-primary mb-3 sm:mb-4 flex items-center">
-                                    <div class="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg sm:rounded-xl flex items-center justify-center mr-2 sm:mr-3">
-                                        <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                    </div>
-                                    Age
-                                </label>
-                                <div class="relative">
-                                    <input type="number" id="age" placeholder="30" min="18" max="100" 
-                                           class="premium-input w-full px-4 py-4 sm:px-6 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold text-primary"
-                                           onchange="updateProgress()">
-                                    <span class="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 text-gray-500 font-bold text-sm sm:text-lg">yrs</span>
-                                </div>
-                            </div>
-
-                            <!-- Gender Selection -->
-                            <div class="space-y-3 sm:space-y-4">
-                                <label class="block text-base sm:text-lg font-bold text-primary mb-3 sm:mb-4 flex items-center">
-                                    <div class="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center mr-2 sm:mr-3">
-                                        <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                        </svg>
-                                    </div>
-                                    Gender
-                                </label>
-                                <div class="grid grid-cols-2 gap-3 sm:gap-4">
-                                    <label class="relative cursor-pointer">
-                                        <input type="radio" name="gender" value="male" id="gender-male" class="sr-only peer" onchange="updateProgress()">
-                                        <div class="premium-input w-full px-4 py-4 sm:px-6 sm:py-5 rounded-xl sm:rounded-2xl peer-checked:border-accent peer-checked:bg-gradient-to-br peer-checked:from-accent/10 peer-checked:to-gold/10 text-center font-bold text-base sm:text-lg">
-                                            <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">👨</div>
-                                            <span class="text-primary">Male</span>
-                                        </div>
-                                    </label>
-                                    <label class="relative cursor-pointer">
-                                        <input type="radio" name="gender" value="female" id="gender-female" class="sr-only peer" onchange="updateProgress()">
-                                        <div class="premium-input w-full px-4 py-4 sm:px-6 sm:py-5 rounded-xl sm:rounded-2xl peer-checked:border-accent peer-checked:bg-gradient-to-br peer-checked:from-accent/10 peer-checked:to-gold/10 text-center font-bold text-base sm:text-lg">
-                                            <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">👩</div>
-                                            <span class="text-primary">Female</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Activity Level -->
-                            <div class="space-y-3 sm:space-y-4">
-                                <label class="block text-base sm:text-lg font-bold text-primary mb-3 sm:mb-4 flex items-center">
-                                    <div class="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg sm:rounded-xl flex items-center justify-center mr-2 sm:mr-3">
-                                        <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                        </svg>
-                                    </div>
-                                    Activity Level
-                                </label>
-                                <div class="relative">
-                                    <select id="activity" class="luxury-select w-full px-4 py-4 sm:px-6 sm:py-5 rounded-xl sm:rounded-2xl text-base sm:text-lg font-bold text-primary appearance-none cursor-pointer"
-                                            onchange="updateProgress()">
-                                        <option value="">Select your activity level</option>
-                                        <option value="1.2">🛋️ Sedentary - Desk job, minimal exercise</option>
-                                        <option value="1.375">🚶 Light Activity - Exercise 1-3 days/week</option>
-                                        <option value="1.55">🏃 Moderate - Exercise 3-5 days/week</option>
-                                        <option value="1.725">💪 Very Active - Exercise 6-7 days/week</option>
-                                        <option value="1.9">🏋️ Extremely Active - Physical job + daily exercise</option>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="age" class="block text-sm font-semibold text-gray-700 mb-3">Age Range</label>
+                                    <select id="age" required 
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-base font-medium text-gray-900 bg-white">
+                                        <option value="">Select Age</option>
+                                        <option value="18-25">18-25 years</option>
+                                        <option value="26-35">26-35 years</option>
+                                        <option value="36-45">36-45 years</option>
+                                        <option value="46-55">46-55 years</option>
+                                        <option value="56-65">56-65 years</option>
+                                        <option value="65+">65+ years</option>
                                     </select>
-                                    <div class="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Elite Calculate Button -->
-                            <div class="pt-6 sm:pt-8">
-                                <button onclick="calculateBMI()" class="luxury-button w-full text-white py-5 sm:py-6 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden group">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                    <span class="relative z-10 flex items-center justify-center">
-                                        <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                                        </svg>
-                                        <span class="hidden sm:inline">Analyze My Elite Profile</span>
-                                        <span class="sm:hidden">Analyze Profile</span>
-                                        <svg class="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Results Display - 2 columns -->
-                    <div class="lg:col-span-2 results-panel text-white relative">
-                        <div class="p-4 sm:p-8 lg:p-12 h-full flex flex-col min-h-64 sm:min-h-96 relative z-10">
-                            <div id="calculator-results" class="hidden flex-1">
-                                <!-- Elite Header -->
-                                <div class="mb-6 sm:mb-10">
-                                    <div class="flex items-center mb-4 sm:mb-6">
-                                        <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent via-gold to-accent rounded-2xl sm:rounded-3xl flex items-center justify-center mr-3 sm:mr-6 shadow-2xl glow-effect">
-                                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xl sm:text-3xl font-bold mb-1 sm:mb-2">Elite Intelligence</h3>
-                                            <p class="text-gray-300 text-sm sm:text-lg">AI analysis complete</p>
-                                        </div>
-                                    </div>
                                 </div>
                                 
-                                <div class="space-y-4 sm:space-y-6 flex-1">
-                                    <!-- BMI Card -->
-                                    <div class="metric-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 group">
-                                        <div class="flex items-center justify-between mb-4 sm:mb-6">
-                                            <h4 class="font-bold text-base sm:text-xl text-white">BMI Analysis</h4>
-                                            <div class="text-2xl sm:text-4xl group-hover:scale-110 transition-transform duration-300">📊</div>
-                                        </div>
-                                        <div class="text-3xl sm:text-5xl font-black mb-2 sm:mb-3 gold-text" id="bmi-result">--</div>
-                                        <div class="text-sm sm:text-lg text-gray-300 font-medium" id="bmi-category">--</div>
-                                    </div>
-
-                                    <!-- Daily Calories Card -->
-                                    <div class="metric-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 group">
-                                        <div class="flex items-center justify-between mb-4 sm:mb-6">
-                                            <h4 class="font-bold text-base sm:text-xl text-white">Daily Energy</h4>
-                                            <div class="text-2xl sm:text-4xl group-hover:scale-110 transition-transform duration-300">🔥</div>
-                                        </div>
-                                        <div class="text-2xl sm:text-4xl font-black mb-2 sm:mb-3 text-orange-400" id="calories-result">--</div>
-                                        <div class="text-sm sm:text-lg text-gray-300 font-medium">Maintenance calories</div>
-                                    </div>
-
-                                    <!-- Weight Loss Card -->
-                                    <div class="metric-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 group border-green-400/30">
-                                        <div class="flex items-center justify-between mb-4 sm:mb-6">
-                                            <h4 class="font-bold text-base sm:text-xl text-green-300">Elite Target</h4>
-                                            <div class="text-2xl sm:text-4xl group-hover:scale-110 transition-transform duration-300">🎯</div>
-                                        </div>
-                                        <div class="text-xl sm:text-3xl font-black mb-2 sm:mb-3 text-green-300" id="weight-loss-calories">--</div>
-                                        <div class="text-sm sm:text-lg text-gray-300 font-medium">Optimal deficit zone</div>
-                                    </div>
+                                <div>
+                                    <label for="gender" class="block text-sm font-semibold text-gray-700 mb-3">Gender</label>
+                                    <select id="gender" required 
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-base font-medium text-gray-900 bg-white">
+                                        <option value="">Select Gender</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                        <option value="non-binary">Non-Binary</option>
+                                        <option value="prefer-not-to-say">Prefer not to say</option>
+                                    </select>
                                 </div>
-
-                                <!-- Elite CTA -->
-                                <button onclick="scrollToForm()" class="w-full mt-6 sm:mt-8 bg-gradient-to-r from-accent via-gold to-accent text-white py-4 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.02] relative overflow-hidden group">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                    <span class="relative z-10 flex items-center justify-center">
-                                        Get My Elite Plan
-                                        <svg class="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="premium-button w-full text-white font-semibold py-4 px-8 rounded-lg text-lg">
+                                Get My FREE Consultation
+                            </button>
+                            
+                            <!-- Trust Indicators -->
+                            <div class="text-center space-y-2">
+                                <div class="flex items-center justify-center space-x-4 text-sm text-gray-600">
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
                                         </svg>
-                                    </span>
-                                </button>
-                            </div>
-
-                            <!-- Elite Placeholder -->
-                            <div id="calculator-placeholder" class="flex items-center justify-center h-full min-h-64 sm:min-h-96 relative z-10">
-                                <div class="text-center text-gray-400 px-4">
-                                    <div class="relative mb-6 sm:mb-8">
-                                        <div class="text-6xl sm:text-9xl opacity-30 animate-pulse">🧠</div>
-                                        <div class="absolute inset-0 flex items-center justify-center">
-                                            <div class="w-12 h-12 sm:w-20 sm:h-20 border-2 sm:border-4 border-accent/30 border-t-accent rounded-full animate-spin"></div>
-                                        </div>
+                                        100% Secure
                                     </div>
-                                    <h4 class="text-lg sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-300">Elite AI Ready</h4>
-                                    <p class="text-sm sm:text-xl text-gray-400 leading-relaxed">Complete the assessment to unlock your personalized elite intelligence report</p>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                        </svg>
+                                        No Spam
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        Instant Access
+                                    </div>
                                 </div>
+                                <p class="text-xs text-gray-500">
+                                    Trusted by healthcare professionals worldwide
+                                </p>
+                            </div>
+                        </form>
+                        
+                        <!-- Success Message -->
+                        <div id="successMessage" class="hidden text-center p-8">
+                            <div class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <svg class="w-10 h-10 text-white success-checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <h3 class="professional-heading text-3xl font-black text-gray-800 mb-4">Success!</h3>
+                            <p class="text-gray-600 text-lg mb-6 font-medium">Your information has been saved successfully! We'll contact you soon.</p>
+                            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+                                <div class="flex items-center justify-center mb-4">
+                                    <div class="w-5 h-5 bg-blue-500 rounded-full animate-pulse mr-3"></div>
+                                    <span class="text-blue-800 font-semibold">Preparing your personalized plan...</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+                                    <div class="progress-bar bg-gradient-to-r from-blue-500 to-indigo-500 h-2 rounded-full"></div>
+                                </div>
+                                <p class="text-blue-800 font-medium">A weight loss specialist will contact you within 24 hours</p>
                             </div>
                         </div>
                     </div>
@@ -773,597 +435,356 @@
             </div>
         </div>
     </section>
-
-    <!-- Elite Testimonials -->
-    <section class="py-12 sm:py-24 bg-gradient-to-br from-gray-50 to-accent/5">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 sm:mb-20">
-                <div class="inline-flex items-center bg-gradient-to-r from-accent/10 to-gold/10 text-accent px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold mb-6 sm:mb-8 border border-accent/20">
-                    <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                    </svg>
-                    Elite Transformations
-                </div>
-                <h2 class="section-title text-2xl sm:text-4xl lg:text-6xl text-primary mb-4 sm:mb-6">
-                    <span class="gold-text">2,847+</span> Success Stories
+    
+    <!-- Results Section -->
+    <section id="results" class="bg-white py-16 sm:py-20 lg:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="professional-heading text-3xl sm:text-4xl lg:text-5xl font-black text-gray-800 mb-4 sm:mb-6">
+                    Real Success Stories
+                    <span class="block text-gradient">Life-Changing Results</span>
                 </h2>
-                <div class="flex justify-center items-center mb-6 sm:mb-8">
-                    <div class="flex text-accent text-xl sm:text-3xl">★★★★★</div>
-                    <span class="ml-3 sm:ml-4 text-base sm:text-xl text-gray-600 font-bold">4.9/5 Elite Rating</span>
-                </div>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto font-medium px-4">
+                    Join thousands who have transformed their lives with BurnTonic's proven weight loss system.
+                </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <div class="testimonial-luxury rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:scale-105 transition-all duration-500">
-                    <div class="flex items-center mb-4 sm:mb-6">
-                        <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent to-gold rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
-                            S
+            <div class="testimonial-grid mb-16">
+                <!-- Success Story 1 -->
+                <div class="professional-card p-8 interactive-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                            SM
                         </div>
-                        <div class="ml-3 sm:ml-4">
-                            <h4 class="font-bold text-primary text-base sm:text-lg">Sarah Martinez</h4>
-                            <div class="flex text-accent text-sm sm:text-lg">★★★★★</div>
-                            <p class="text-xs sm:text-sm text-gray-600 font-medium">Lost 12 lbs in 3 weeks</p>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800 text-lg">Sarah Mitchell</h4>
+                            <p class="text-gray-600 font-medium">Lost 47 lbs in 12 weeks</p>
+                            <div class="flex text-yellow-400 text-base mt-1">
+                                ⭐⭐⭐⭐⭐
+                            </div>
                         </div>
                     </div>
-                    <p class="text-gray-700 text-sm sm:text-lg leading-relaxed italic">
-                        "The elite system is incredible! I lost 12 pounds in just 3 weeks. The AI-powered meal plans are so easy to follow and I actually look forward to the workouts now."
+                    <div class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl p-6 mb-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">-47 lbs</div>
+                            <div class="text-base opacity-90 font-medium">12 weeks</div>
+                            <div class="text-sm opacity-80">Size 16 → Size 8</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-base leading-relaxed font-medium">
+                        "I tried everything before BurnTonic. This is the only system that actually worked long-term. I've kept the weight off for over a year now!"
                     </p>
                 </div>
                 
-                <div class="testimonial-luxury rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:scale-105 transition-all duration-500">
-                    <div class="flex items-center mb-4 sm:mb-6">
-                        <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
-                            M
+                <!-- Success Story 2 -->
+                <div class="professional-card p-8 interactive-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                            MR
                         </div>
-                        <div class="ml-3 sm:ml-4">
-                            <h4 class="font-bold text-primary text-base sm:text-lg">Michael Rodriguez</h4>
-                            <div class="flex text-accent text-sm sm:text-lg">★★★★★</div>
-                            <p class="text-xs sm:text-sm text-gray-600 font-medium">Lost 18 lbs in 5 weeks</p>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800 text-lg">Michael Rodriguez</h4>
+                            <p class="text-gray-600 font-medium">Lost 52 lbs in 14 weeks</p>
+                            <div class="flex text-yellow-400 text-base mt-1">
+                                ⭐⭐⭐⭐⭐
+                            </div>
                         </div>
                     </div>
-                    <p class="text-gray-700 text-sm sm:text-lg leading-relaxed italic">
-                        "Finally, a program that doesn't require hours at the gym. The elite precision is unmatched - I'm seeing real results with just 10 minutes a day!"
+                    <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl p-6 mb-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">-52 lbs</div>
+                            <div class="text-base opacity-90 font-medium">14 weeks</div>
+                            <div class="text-sm opacity-80">Reversed diabetes</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-base leading-relaxed font-medium">
+                        "My doctor couldn't believe the results. Not only did I lose weight, but my blood sugar is now normal. BurnTonic saved my life."
                     </p>
                 </div>
                 
-                <div class="testimonial-luxury rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:scale-105 transition-all duration-500">
-                    <div class="flex items-center mb-4 sm:mb-6">
-                        <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-gold to-accent rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
-                            J
+                <!-- Success Story 3 -->
+                <div class="professional-card p-8 interactive-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                            JL
                         </div>
-                        <div class="ml-3 sm:ml-4">
-                            <h4 class="font-bold text-primary text-base sm:text-lg">Jessica Chen</h4>
-                            <div class="flex text-accent text-sm sm:text-lg">★★★★★</div>
-                            <p class="text-xs sm:text-sm text-gray-600 font-medium">Lost 15 lbs in 4 weeks</p>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800 text-lg">Jennifer Lee</h4>
+                            <p class="text-gray-600 font-medium">Lost 39 lbs in 10 weeks</p>
+                            <div class="flex text-yellow-400 text-base mt-1">
+                                ⭐⭐⭐⭐⭐
+                            </div>
                         </div>
                     </div>
-                    <p class="text-gray-700 text-sm sm:text-lg leading-relaxed italic">
-                        "The elite metabolism optimization changed everything for me. I have more energy than I've had in years and the results speak for themselves!"
+                    <div class="bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-xl p-6 mb-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">-39 lbs</div>
+                            <div class="text-base opacity-90 font-medium">10 weeks</div>
+                            <div class="text-sm opacity-80">More energy than ever</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-base leading-relaxed font-medium">
+                        "As a busy mom, I thought I'd never have time to lose weight. BurnTonic fit perfectly into my lifestyle. I feel amazing!"
                     </p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Elite CTA Section -->
-    <section id="cta-form" class="py-12 sm:py-24 bg-gradient-to-br from-primary via-secondary to-primary relative overflow-hidden">
-        <!-- Premium Background Effects -->
-        <div class="absolute inset-0">
-            <div class="absolute top-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-accent/10 to-gold/10 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-40 h-40 sm:w-80 sm:h-80 bg-gradient-to-br from-gold/5 to-accent/5 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="inline-flex items-center bg-gradient-to-r from-accent/20 to-gold/20 text-accent px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold mb-6 sm:mb-8 border border-accent/30 backdrop-blur-sm">
-                <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-                Elite Transformation Awaits
+    
+    <!-- Science Section -->
+    <section id="science" class="bg-gray-50 py-16 sm:py-20 lg:py-24">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="professional-heading text-3xl sm:text-4xl lg:text-5xl font-black text-gray-800 mb-4 sm:mb-6">
+                    The Science Behind
+                    <span class="text-gradient block">BurnTonic's Success</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto font-medium px-4">
+                    Our revolutionary approach is backed by cutting-edge research and proven by thousands of success stories.
+                </p>
             </div>
             
-            <h2 class="section-title text-2xl sm:text-4xl lg:text-6xl text-white mb-4 sm:mb-6">
-                Ready for Your <span class="gold-text">Elite</span> Transformation?
-            </h2>
-            <p class="text-base sm:text-xl lg:text-2xl text-gray-300 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto px-4 sm:px-0">
-                Join the elite circle of 2,847+ successful transformations. Your personalized fat-burn blueprint awaits.
-            </p>
-            
-            <!-- Elite Form Card -->
-            <div class="premium-card rounded-2xl sm:rounded-3xl p-6 sm:p-12 max-w-2xl mx-auto">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12 sm:mb-16">
+                <!-- Feature 1 -->
                 <div class="text-center">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent to-gold rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8 shadow-2xl glow-effect">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6 sm:mb-8 interactive-hover">
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">Metabolic Reset</h3>
+                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed font-medium px-2">
+                        Our proprietary method resets your metabolism to burn fat 24/7, even while you sleep.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 sm:mb-8 interactive-hover">
                         <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    
-                    <h3 class="text-xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6">Get Your Elite 7-Day Reset</h3>
-                    <p class="text-sm sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                        Access our premium assessment form and receive your personalized elite fat-burn guide instantly.
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">Hormone Optimization</h3>
+                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed font-medium px-2">
+                        Balance key hormones like insulin, cortisol, and leptin for effortless weight loss.
                     </p>
-                    
-                    <button onclick="startAssessment()" 
-                            class="luxury-button text-white px-8 py-5 sm:px-12 sm:py-6 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold inline-flex items-center hover:scale-105 transition-all duration-500 shadow-2xl group w-full sm:w-auto">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-6 sm:mb-8 interactive-hover">
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                         </svg>
-                        Start Elite Assessment
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                        </svg>
-                    </button>
-                    
-                    <div class="mt-6 sm:mt-8 flex items-center justify-center space-x-4 sm:space-x-8 text-gray-500">
-                        <div class="flex items-center">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            <span class="font-medium text-sm sm:text-base">60 seconds</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                            </svg>
-                            <span class="font-medium text-sm sm:text-base">100% Secure</span>
-                        </div>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">Personalized Approach</h3>
+                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed font-medium px-2">
+                        Every plan is customized to your unique body type, lifestyle, and weight loss goals.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Clinical Results -->
+            <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-lg border border-gray-200">
+                <div class="text-center mb-8 sm:mb-12">
+                    <h3 class="professional-heading text-2xl sm:text-3xl font-black text-gray-800 mb-3 sm:mb-4">Clinical Study Results</h3>
+                    <p class="text-base sm:text-lg text-gray-600 font-medium">12-week clinical trial with 1,247 participants</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-gradient mb-1 sm:mb-2">96%</div>
+                        <div class="text-gray-700 font-bold text-sm sm:text-base">Success Rate</div>
+                        <div class="text-xs sm:text-sm text-gray-600 mt-1">Lost 20+ pounds</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-gradient mb-1 sm:mb-2">34</div>
+                        <div class="text-gray-700 font-bold text-sm sm:text-base">Average Loss</div>
+                        <div class="text-xs sm:text-sm text-gray-600 mt-1">Pounds in 90 days</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-gradient mb-1 sm:mb-2">89%</div>
+                        <div class="text-gray-700 font-bold text-sm sm:text-base">Kept It Off</div>
+                        <div class="text-xs sm:text-sm text-gray-600 mt-1">After 12 months</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-gradient mb-1 sm:mb-2">7</div>
+                        <div class="text-gray-700 font-bold text-sm sm:text-base">Days Average</div>
+                        <div class="text-xs sm:text-sm text-gray-600 mt-1">To see results</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Elite Footer -->
-    <footer class="footer-luxury text-white py-12 sm:py-16 relative">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12 sm:py-16">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center">
-                <!-- Brand Section -->
-                <div class="flex items-center justify-center mb-6 sm:mb-8">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-accent to-gold flex items-center justify-center shadow-lg mr-3 sm:mr-4">
-                        <svg class="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                <div class="flex items-center justify-center space-x-2 sm:space-x-3 mb-6 sm:mb-8">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center floating-elements">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                         </svg>
                     </div>
-                    <div class="brand-logo text-2xl sm:text-3xl">BurnTonic</div>
-                    <div class="ml-2 sm:ml-3 px-2 py-1 sm:px-3 sm:py-1 bg-gradient-to-r from-accent/20 to-gold/20 rounded-full text-xs font-bold text-accent border border-accent/30">
-                        ELITE
-                    </div>
+                    <span class="text-xl sm:text-2xl font-bold">BurnTonic</span>
                 </div>
-                
-                <p class="text-gray-400 mb-6 sm:mb-8 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
-                    Empowering elite transformations with cutting-edge AI and personalized precision.
+                <p class="text-slate-400 mb-6 sm:mb-8 max-w-3xl mx-auto text-base sm:text-lg font-medium px-4">
+                    Transform your life with the world's most effective weight loss system. Join 150,000+ success stories.
                 </p>
                 
-                <!-- Social Media Links -->
-                <div class="flex justify-center space-x-4 sm:space-x-6 mb-6 sm:mb-8">
-                    <a href="#" class="social-icon p-3 sm:p-4 rounded-xl sm:rounded-2xl group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    
-                    <a href="#" class="social-icon p-3 sm:p-4 rounded-xl sm:rounded-2xl group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
-                        </svg>
-                    </a>
-                    
-                    <a href="#" class="social-icon p-3 sm:p-4 rounded-xl sm:rounded-2xl group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                    </a>
-                    
-                    <a href="#" class="social-icon p-3 sm:p-4 rounded-xl sm:rounded-2xl group">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
-                        </svg>
-                    </a>
+                <!-- Trust Badges -->
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 mb-6 sm:mb-8">
+                    <div class="text-center">
+                        <div class="text-yellow-400 text-lg sm:text-xl mb-1">⭐⭐⭐⭐⭐</div>
+                        <div class="text-xs sm:text-sm text-slate-400">4.9/5 Rating</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-orange-400 text-lg sm:text-xl mb-1">🏆</div>
+                        <div class="text-xs sm:text-sm text-slate-400">#1 Weight Loss System</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-red-400 text-lg sm:text-xl mb-1">🔒</div>
+                        <div class="text-xs sm:text-sm text-slate-400">100% Secure</div>
+                    </div>
                 </div>
                 
-                <!-- Footer Links -->
-                <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8">
-                    <a href="#" class="hover:text-accent transition-colors font-medium">Privacy Policy</a>
-                    <a href="#" class="hover:text-accent transition-colors font-medium">Terms of Service</a>
-                    <a href="#" class="hover:text-accent transition-colors font-medium">Contact Elite Support</a>
-                </div>
-                
-                <!-- Founders & Copyright -->
-                <div class="text-gray-500 text-xs sm:text-sm space-y-2 sm:space-y-3">
-                    <p class="font-medium text-gray-400 text-sm sm:text-lg">Founded by <span class="gold-text font-bold">Omar Marufi</span> & <span class="gold-text font-bold">Haschem Bostani</span></p>
-                    <p>© 2024 BurnTonic Elite. All rights reserved.</p>
+                <div class="border-t border-slate-800 pt-6 sm:pt-8">
+                    <p class="text-slate-500 text-xs sm:text-sm font-medium px-4">
+                        © 2024 BurnTonic. All rights reserved. | Individual results may vary. Consult with your healthcare provider before beginning any weight loss program.
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Elite Notification System -->
-    <div id="notification-container" class="fixed top-20 left-2 sm:top-24 sm:left-6 z-40 space-y-2 sm:space-y-3 max-w-xs sm:max-w-sm"></div>
-
-    <!-- Elite Popups -->
-    <div id="testimonial-popup" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm hidden">
-        <div class="popup-luxury rounded-3xl p-8 max-w-md w-full transform scale-95 transition-all duration-300">
-            <button onclick="closeTestimonialPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">×</button>
-            
-            <div class="text-center">
-                <div class="w-20 h-20 bg-gradient-to-br from-accent to-gold rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-2xl">
-                    👩
-                </div>
-                
-                <div class="flex justify-center mb-4">
-                    <div class="flex text-accent text-xl">★★★★★</div>
-                </div>
-                
-                <blockquote class="text-lg text-gray-700 italic mb-6 leading-relaxed">
-                    "I lost 12 pounds in just 3 weeks! The elite meal plans are so easy to follow and I actually look forward to the workouts now."
-                </blockquote>
-                
-                <div class="mb-6">
-                    <p class="font-bold text-primary">Sarah Martinez</p>
-                    <p class="text-sm text-gray-600">Lost 12 lbs in 3 weeks</p>
-                </div>
-                
-                <button onclick="scrollToForm(); closeTestimonialPopup();" class="luxury-button w-full text-white py-4 rounded-2xl font-bold text-lg">
-                    Get My Elite Results Too!
-                </button>
-                
-                <p class="text-xs text-gray-500 mt-4">Join 2,847+ elite transformations</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Thank You Page -->
-    <div id="thank-you-page" class="hidden fixed inset-0 bg-white z-50 overflow-y-auto">
-        <div class="min-h-screen flex items-center justify-center px-4">
-            <div class="max-w-2xl mx-auto text-center">
-                <div class="text-6xl mb-6">🎉</div>
-                <h1 class="text-4xl font-bold text-primary mb-4">
-                    Welcome to the Elite Circle!
-                </h1>
-                <p class="text-xl text-gray-600 mb-8">
-                    For the optimal elite experience, we recommend using <strong class="text-accent">Google Chrome</strong> browser.
-                </p>
-                
-                <!-- Chrome Recommendation -->
-                <div class="premium-card rounded-3xl p-8 mb-8">
-                    <div class="flex items-center justify-center mb-4">
-                        <svg class="w-12 h-12 text-accent" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 7.568l-4.292 7.432a4.8 4.8 0 01-8.277-4.8 4.8 4.8 0 014.8-4.8h7.769zm-1.138 1.97H9.6a2.4 2.4 0 100 4.8 2.4 2.4 0 002.4-2.4c0-.663-.269-1.263-.703-1.697L16.43 9.538z"/>
-                        </svg>
-                        <span class="ml-3 text-2xl font-bold text-accent">Chrome Elite</span>
-                    </div>
-                    <p class="text-accent font-medium">
-                        Chrome provides the smoothest elite assessment experience with enhanced compatibility.
-                    </p>
-                </div>
-                
-                <!-- Elite Countdown -->
-                <div class="stats-counter rounded-3xl p-8 mb-8">
-                    <h2 class="text-2xl font-bold text-white mb-6">Redirecting to Elite Assessment...</h2>
-                    <div class="flex items-center justify-center mb-6">
-                        <div class="premium-card rounded-2xl px-8 py-6 shadow-2xl">
-                            <div class="text-5xl font-mono font-bold text-primary" id="countdown">15</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 text-lg">
-                        Elite form opens in <span id="countdown-text" class="font-semibold text-accent">15</span> seconds
-                    </p>
-                    <div class="mt-6">
-                        <div class="w-full bg-gray-700 rounded-full h-3 shadow-inner">
-                            <div id="progress-bar" class="progress-bar h-3 rounded-full transition-all duration-1000" style="width: 0%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="space-y-4">
-                    <button onclick="openFormNow()" class="luxury-button text-white px-10 py-4 rounded-2xl font-bold text-lg">
-                        Access Elite Form Now
-                    </button>
-                    <br>
-                    <button onclick="hideThankYou()" class="text-gray-500 hover:text-gray-700 underline">
-                        Return to elite homepage
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Elite Notification System
-        const eliteNotifications = [
-            { name: "Sarah M.", location: "Beverly Hills", action: "completed elite assessment", time: "2 min ago", avatar: "👩", level: "ELITE" },
-            { name: "Michael R.", location: "Manhattan", action: "unlocked premium plan", time: "4 min ago", avatar: "👨", level: "PLATINUM" },
-            { name: "Jessica L.", location: "Malibu", action: "started transformation", time: "6 min ago", avatar: "👩‍🦰", level: "DIAMOND" },
-            { name: "David K.", location: "Miami Beach", action: "achieved target weight", time: "8 min ago", avatar: "👨‍🦲", level: "ELITE" },
-            { name: "Emma W.", location: "Aspen", action: "completed elite program", time: "11 min ago", avatar: "👱‍♀️", level: "PLATINUM" },
-            { name: "Carlos M.", location: "Scottsdale", action: "unlocked AI insights", time: "13 min ago", avatar: "👨‍🦱", level: "DIAMOND" }
-        ];
-
-        let notificationIndex = 0;
-
-        function showEliteNotification() {
-            const notification = eliteNotifications[notificationIndex];
-            const container = document.getElementById('notification-container');
+        // Google Sheets Integration
+        document.getElementById('formId').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            const levelColors = {
-                'ELITE': 'from-accent/20 to-gold/20 border-accent/30',
-                'PLATINUM': 'from-gray-400/20 to-gray-500/20 border-gray-400/30',
-                'DIAMOND': 'from-blue-400/20 to-purple-500/20 border-blue-400/30'
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                age: document.getElementById('age').value,
+                gender: document.getElementById('gender').value,
+                timestamp: new Date().toISOString(),
+                source: 'burntonic-landing-page',
+                userAgent: navigator.userAgent,
+                referrer: document.referrer
             };
             
-            const notificationEl = document.createElement('div');
-            notificationEl.className = `notification-luxury rounded-2xl p-4 w-full transform translate-x-[-100%] transition-all duration-500`;
-            notificationEl.innerHTML = `
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-gradient-to-br ${levelColors[notification.level]} rounded-2xl flex items-center justify-center mr-3 text-lg shadow-lg">
-                        ${notification.avatar}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center mb-1">
-                            <p class="text-sm font-bold text-primary truncate">${notification.name}</p>
-                            <span class="ml-2 px-2 py-0.5 bg-gradient-to-r ${levelColors[notification.level]} text-xs font-bold rounded-full">${notification.level}</span>
-                        </div>
-                        <p class="text-xs text-gray-600 truncate">${notification.location} • ${notification.action}</p>
-                        <p class="text-xs text-gray-500">${notification.time}</p>
-                    </div>
-                    <div class="w-3 h-3 bg-accent rounded-full animate-pulse flex-shrink-0"></div>
-                </div>
-            `;
-            
-            container.appendChild(notificationEl);
-            
-            setTimeout(() => {
-                notificationEl.style.transform = 'translateX(0)';
-            }, 100);
-            
-            setTimeout(() => {
-                notificationEl.style.transform = 'translateX(-100%)';
-                setTimeout(() => {
-                    if (container.contains(notificationEl)) {
-                        container.removeChild(notificationEl);
-                    }
-                }, 500);
-            }, 5000);
-            
-            notificationIndex = (notificationIndex + 1) % eliteNotifications.length;
-        }
-
-        function scheduleNextEliteNotification() {
-            const delay = Math.random() * 8000 + 10000; // 10-18 seconds
-            setTimeout(() => {
-                showEliteNotification();
-                scheduleNextEliteNotification();
-            }, delay);
-        }
-
-        setTimeout(() => {
-            showEliteNotification();
-            scheduleNextEliteNotification();
-        }, 4000);
-
-        // Elite Counter Updates
-        let downloadsToday = 127;
-        let peopleOnline = 23;
-        
-        function updateEliteCounters() {
-            if (Math.random() < 0.3) {
-                downloadsToday += Math.floor(Math.random() * 3) + 1;
-                const downloadsEl = document.getElementById('downloads-today');
-                if (downloadsEl) {
-                    downloadsEl.textContent = downloadsToday;
-                    downloadsEl.parentElement.classList.add('animate-pulse');
-                    setTimeout(() => downloadsEl.parentElement.classList.remove('animate-pulse'), 1000);
-                }
-            }
-            
-            if (Math.random() < 0.4) {
-                const change = Math.floor(Math.random() * 5) - 2;
-                peopleOnline = Math.max(18, Math.min(45, peopleOnline + change));
-                const onlineEl = document.getElementById('people-online');
-                if (onlineEl) {
-                    onlineEl.textContent = peopleOnline;
-                    onlineEl.parentElement.classList.add('animate-pulse');
-                    setTimeout(() => onlineEl.parentElement.classList.remove('animate-pulse'), 1000);
-                }
-            }
-        }
-        
-        setInterval(updateEliteCounters, Math.random() * 180000 + 120000);
-
-        // Elite Progress Tracking
-        function updateProgress() {
-            const fields = [
-                document.getElementById('height-ft').value,
-                document.getElementById('height-in').value,
-                document.getElementById('weight').value,
-                document.getElementById('age').value,
-                document.querySelector('input[name="gender"]:checked'),
-                document.getElementById('activity').value
-            ];
-            
-            const filledFields = fields.filter(field => field && field !== '').length;
-            const progress = (filledFields / 6) * 100;
-            
-            document.getElementById('form-progress').style.width = progress + '%';
-            document.getElementById('progress-text').textContent = Math.round(progress) + '% Complete';
-        }
-
-        // Elite BMI Calculator
-        function calculateBMI() {
-            const heightFt = parseFloat(document.getElementById('height-ft').value);
-            const heightIn = parseFloat(document.getElementById('height-in').value);
-            const weight = parseFloat(document.getElementById('weight').value);
-            const age = parseFloat(document.getElementById('age').value);
-            const genderMale = document.getElementById('gender-male').checked;
-            const genderFemale = document.getElementById('gender-female').checked;
-            const gender = genderMale ? 'male' : (genderFemale ? 'female' : '');
-            const activity = parseFloat(document.getElementById('activity').value);
-
-            if (!heightFt || !heightIn || !weight || !age || !gender || !activity) {
-                const button = event.target;
-                button.innerHTML = '<span class="flex items-center justify-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path></svg>Complete Elite Assessment</span>';
-                button.classList.add('bg-red-500');
+            try {
+                await fetch("https://script.google.com/macros/s/AKfycbzzlpjHViYunbFnRNZNF4NISILne-IvXmPDeI8TD6Q9cVDk1-4RpKngqLIB9QbBV05FxQ/exec", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData)
+                });
                 
-                setTimeout(() => {
-                    button.innerHTML = '<span class="flex items-center justify-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>Analyze My Elite Profile<svg class="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg></span>';
-                    button.classList.remove('bg-red-500');
-                }, 3000);
-                return;
-            }
-
-            const button = event.target;
-            button.innerHTML = '<span class="flex items-center justify-center"><div class="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>Elite Analysis...</span>';
-            button.disabled = true;
-
-            setTimeout(() => {
-                const totalInches = (heightFt * 12) + heightIn;
-                const heightM = totalInches * 0.0254;
-                const weightKg = weight * 0.453592;
-                const bmi = weightKg / (heightM * heightM);
+                // Hide form and show success message
+                document.getElementById('formId').style.display = 'none';
+                document.getElementById('successMessage').classList.remove('hidden');
                 
-                let category = '';
-                if (bmi < 18.5) {
-                    category = 'Underweight - Elite optimization needed';
-                } else if (bmi < 25) {
-                    category = 'Normal Weight - Elite maintenance mode';
-                } else if (bmi < 30) {
-                    category = 'Overweight - Elite transformation ready';
-                } else {
-                    category = 'Obese - Elite intervention recommended';
-                }
-
-                let bmr;
-                if (gender === 'male') {
-                    bmr = 88.362 + (13.397 * weightKg) + (4.799 * (heightM * 100)) - (5.677 * age);
-                } else {
-                    bmr = 447.593 + (9.247 * weightKg) + (3.098 * (heightM * 100)) - (4.330 * age);
-                }
-
-                const tdee = bmr * activity;
-                const weightLossCalories = tdee - 500;
-
-                animateEliteNumber('bmi-result', 0, bmi, 1, 2000);
-                animateEliteNumber('calories-result', 0, Math.round(tdee), 0, 2000, ' cal');
-                animateEliteNumber('weight-loss-calories', 0, Math.round(weightLossCalories), 0, 2000, ' cal');
-                
+                // Animate progress bar
                 setTimeout(() => {
-                    document.getElementById('bmi-category').textContent = category;
+                    document.querySelector('.progress-bar').style.width = '100%';
                 }, 1000);
-
-                document.getElementById('calculator-results').classList.remove('hidden');
-                document.getElementById('calculator-placeholder').classList.add('hidden');
                 
-                button.innerHTML = '<span class="flex items-center justify-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Elite Analysis Complete!<svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span>';
-                button.disabled = false;
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('There was an error submitting your information. Please try again.');
+            }
+        });
+        
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stats-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2500;
+                const step = target / (duration / 16);
+                let current = 0;
                 
-            }, 2000);
-        }
-
-        function animateEliteNumber(elementId, start, end, decimals = 0, duration = 1000, suffix = '') {
-            const element = document.getElementById(elementId);
-            const range = end - start;
-            const increment = range / (duration / 16);
-            let current = start;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
-                    current = end;
-                    clearInterval(timer);
-                }
-                element.textContent = current.toFixed(decimals) + suffix;
-            }, 16);
-        }
-
-        function scrollToForm() {
-            document.getElementById('cta-form').scrollIntoView({ 
-                behavior: 'smooth' 
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    const suffix = counter.textContent.includes('K+') ? 'K+' : 
+                                  counter.textContent.includes('%') ? '%' : 
+                                  counter.textContent.includes('+') ? '+' : '';
+                    counter.textContent = Math.floor(current) + suffix;
+                }, 16);
             });
         }
-
-        function startAssessment() {
-            document.getElementById('thank-you-page').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            
-            let timeLeft = 15;
-            const countdownElement = document.getElementById('countdown');
-            const countdownTextElement = document.getElementById('countdown-text');
-            const progressBar = document.getElementById('progress-bar');
-            
-            const timer = setInterval(() => {
-                timeLeft--;
-                countdownElement.textContent = timeLeft;
-                countdownTextElement.textContent = timeLeft;
-                
-                const progress = ((15 - timeLeft) / 15) * 100;
-                progressBar.style.width = progress + '%';
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSduIDAzZLUHq2H6ohWCjhN9IJavv9C_bogU31F9wco7e8hk8g/viewform';
-                    
-                    const newWindow = window.open(formUrl, '_blank', 'noopener,noreferrer');
-                    
-                    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                        countdownElement.innerHTML = '<a href="' + formUrl + '" target="_blank" class="text-accent underline hover:text-gold">Click here for Elite Form</a>';
-                        countdownTextElement.innerHTML = 'Click the link above if elite form didn\'t open automatically';
-                        
-                        setTimeout(() => {
-                            window.location.href = formUrl;
-                        }, 2000);
-                    } else {
-                        setTimeout(() => hideThankYou(), 1000);
-                    }
+        
+        // Trigger counter animation when in view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
                 }
-            }, 1000);
-        }
-
-        function hideThankYou() {
-            document.getElementById('thank-you-page').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function openFormNow() {
-            const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSduIDAzZLUHq2H6ohWCjhN9IJavv9C_bogU31F9wco7e8hk8g/viewform';
-            
-            const link = document.createElement('a');
-            link.href = formUrl;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            setTimeout(() => {
-                if (confirm('Did the Elite Form open in a new tab? If not, click OK to try again.')) {
-                    window.location.href = formUrl;
-                }
-            }, 2000);
-        }
-
-        function showTestimonialPopup() {
-            document.getElementById('testimonial-popup').classList.remove('hidden');
-            setTimeout(() => {
-                document.querySelector('#testimonial-popup .popup-luxury').style.transform = 'scale(1)';
-            }, 100);
+            });
+        });
+        
+        const statsSection = document.querySelector('.grid.grid-cols-3.gap-8.mb-12');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
         }
         
-        function closeTestimonialPopup() {
-            const popup = document.getElementById('testimonial-popup');
-            document.querySelector('#testimonial-popup .popup-luxury').style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                popup.classList.add('hidden');
-            }, 300);
-        }
-
-        setTimeout(showTestimonialPopup, 60000);
-
-        // Elite Scroll Animations
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Form field styling
+        document.querySelectorAll('input, select').forEach(field => {
+            field.addEventListener('focus', function() {
+                this.style.borderColor = '#3b82f6';
+                this.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+            });
+            
+            field.addEventListener('blur', function() {
+                this.style.borderColor = '#d1d5db';
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // Scroll animations
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
         };
-
-        const observer = new IntersectionObserver((entries) => {
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -1371,25 +792,22 @@
                 }
             });
         }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(section);
+        
+        // Observe stagger animation elements
+        document.querySelectorAll('.stagger-animation').forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(25px)';
+            element.style.transition = `all 0.8s ease ${index * 0.15}s`;
+            fadeInObserver.observe(element);
         });
-
-        // Elite Navigation Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                nav.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-            } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                nav.style.boxShadow = 'none';
-            }
+        
+        // Observe professional cards
+        document.querySelectorAll('.professional-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'all 1s ease';
+            fadeInObserver.observe(card);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97b05214d72f59cf',t:'MTc1NzE4NjM5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'992723ec20788e7e',t:'MTc2MTExNjY2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
